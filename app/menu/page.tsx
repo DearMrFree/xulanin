@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { XUBIE_DATA } from "@/lib/data";
@@ -14,22 +15,6 @@ import {
   X,
   Check,
 } from "lucide-react";
-
-const categoryEmojis: Record<string, string> = {
-  signature: "star",
-  sweet: "candy",
-  savory: "fire",
-  wellness: "leaf",
-  seasonal: "sparkles",
-};
-
-const emojiMap: Record<string, string> = {
-  star: "⭐",
-  candy: "🍫",
-  fire: "🌶️",
-  leaf: "🌿",
-  sparkles: "✨",
-};
 
 export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -123,9 +108,6 @@ export default function MenuPage() {
                     : "bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--primary)]/10"
                 }`}
               >
-                <span className="mr-1.5">
-                  {emojiMap[categoryEmojis[cat.id]] || ""}
-                </span>
                 {cat.name}
               </button>
             ))}
@@ -140,22 +122,26 @@ export default function MenuPage() {
                   key={product.id}
                   className="group bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
                 >
-                  <div className="aspect-square bg-gradient-to-br from-[var(--primary)]/10 to-[var(--accent)]/10 relative overflow-hidden flex items-center justify-center">
-                    <span className="text-8xl group-hover:scale-110 transition-transform duration-500">
-                      {emojiMap[categoryEmojis[product.category]] || "🍿"}
-                    </span>
+                  <div className="aspect-square relative overflow-hidden bg-[var(--muted)]">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
                     <div className="absolute top-3 left-3 flex gap-2">
                       {product.tags.map((tag) => (
                         <span
                           key={tag}
-                          className={`px-2.5 py-1 rounded-full text-[10px] uppercase tracking-wider font-medium ${
+                          className={`px-2.5 py-1 rounded-full text-[10px] uppercase tracking-wider font-medium backdrop-blur-sm ${
                             tag === "bestseller"
-                              ? "bg-[var(--primary)] text-[var(--primary-foreground)]"
+                              ? "bg-[var(--primary)]/90 text-[var(--primary-foreground)]"
                               : tag === "new"
-                                ? "bg-[var(--accent)] text-[var(--accent-foreground)]"
+                                ? "bg-[var(--accent)]/90 text-[var(--accent-foreground)]"
                                 : tag === "spicy"
-                                  ? "bg-red-500 text-white"
-                                  : "bg-[var(--background)]/80 text-[var(--foreground)]"
+                                  ? "bg-red-500/90 text-white"
+                                  : "bg-white/70 text-[var(--foreground)]"
                           }`}
                         >
                           {tag}

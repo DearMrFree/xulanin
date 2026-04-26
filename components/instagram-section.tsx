@@ -1,55 +1,55 @@
 "use client";
-import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 import { InstagramIcon } from "@/components/icons";
 
 const instagramPosts = [
   {
-    emoji: "🥜",
-    caption: "Golden Crunch Mix — our signature snack that started it all!",
-    gradient: "from-amber-100 to-orange-100",
+    src: "/branding/instagram-grid.png",
+    alt: "Xubie Snacks Instagram grid showing Lake Merritt pop-up videos and product reactions",
+    caption: "Lake Merritt, Snack Sundays, first bites, and real-time customer reactions.",
   },
   {
-    emoji: "🌶️",
-    caption: "Spiced Plantain Chips dropping this weekend!",
-    gradient: "from-red-100 to-orange-100",
+    src: "/branding/community-hero.jpeg",
+    alt: "Xubie Snacks event booth with branded tablecloth, desserts, and payment QR codes",
+    caption: "The booth world: branded tablecloth, desserts, merch, and QR-powered ordering.",
   },
   {
-    emoji: "🍫",
-    caption: "Cocoa Cashew Clusters — decadent but guilt-free",
-    gradient: "from-amber-50 to-yellow-100",
+    src: "/branding/community-closeup.jpeg",
+    alt: "Xubie Snacks booth with friends, family, and desserts at an event",
+    caption: "Community-first visuals that make the brand feel like a scene, not just a table.",
   },
   {
-    emoji: "🌿",
-    caption: "Matcha Coconut Bites for your morning energy boost",
-    gradient: "from-green-100 to-emerald-50",
+    src: "/branding/community-smile.jpeg",
+    alt: "Xubie Snacks pop-up with smiling group and desserts on display",
+    caption: "Sweets and treats that pull people in before they even ask the price.",
   },
   {
-    emoji: "🎉",
-    caption: "Catering setup for the Bay Area Founders meetup!",
-    gradient: "from-purple-100 to-pink-100",
+    src: "/branding/community-side.jpeg",
+    alt: "Xubie Snacks event setup with menu board, spinner, and dessert display",
+    caption: "Menu boards, spin wheel, tasting trays, and the kind of setup people remember.",
   },
   {
-    emoji: "👩‍🍳",
-    caption: "Behind the scenes in our San Jose kitchen",
-    gradient: "from-orange-100 to-amber-50",
+    src: "/branding/instagram-profile.png",
+    alt: "Xubie Snacks Instagram profile highlighting DM to order and local delivery",
+    caption: "DM to order. Pick up or local delivery. San Jose, CA. Snacks That Smack.",
   },
 ];
 
 export function InstagramSection() {
   return (
-    <section className="py-24">
+    <section id="instagram" className="py-24">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <span className="text-xs tracking-widest text-[var(--primary)] uppercase">
             Follow Us
           </span>
           <h2 className="font-serif text-4xl lg:text-5xl mt-4 text-[var(--foreground)]">
-            <span className="text-[var(--primary)]">@xubie_snacks</span> on
-            Instagram
+            <span className="text-[var(--primary)]">@xubie_snacks</span> in
+            Motion
           </h2>
-          <p className="text-[var(--muted-foreground)] mt-4 max-w-lg mx-auto">
-            Behind-the-scenes peeks, new flavor drops, event highlights, and
-            the snack-fueled life.
+          <p className="text-[var(--muted-foreground)] mt-4 max-w-2xl mx-auto">
+            Real booth photos, reels, customer reactions, menu drops, and the Bay
+            Area pop-up energy that defines the brand.
           </p>
         </div>
 
@@ -60,22 +60,18 @@ export function InstagramSection() {
               href="https://www.instagram.com/xubie_snacks"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative aspect-square rounded-2xl overflow-hidden"
+              className="group relative aspect-square rounded-2xl overflow-hidden border border-[var(--border)] bg-[var(--card)]"
             >
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${post.gradient} flex items-center justify-center`}
-              >
-                <span className="text-6xl md:text-7xl group-hover:scale-125 transition-transform duration-500">
-                  {post.emoji}
-                </span>
-              </div>
-              <div className="absolute inset-0 bg-[var(--foreground)]/0 group-hover:bg-[var(--foreground)]/60 transition-all duration-300 flex items-end p-4 opacity-0 group-hover:opacity-100">
-                <p className="text-white text-sm leading-snug">
-                  {post.caption}
-                </p>
-              </div>
-              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                <ExternalLink size={18} className="text-white" />
+              <Image
+                src={post.src}
+                alt={post.alt}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-x-0 bottom-0 p-4">
+                <p className="text-white text-sm leading-snug">{post.caption}</p>
               </div>
             </a>
           ))}

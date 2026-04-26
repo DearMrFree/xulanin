@@ -1,22 +1,23 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles, Heart, Leaf } from "lucide-react";
+import { ArrowRight, MapPin, MessageCircle, Truck } from "lucide-react";
 
 const trustBadges = [
-  { icon: Sparkles, text: "Handcrafted" },
-  { icon: Heart, text: "Made with Love" },
-  { icon: Leaf, text: "Natural Ingredients" },
+  { icon: MessageCircle, text: "DM to Order" },
+  { icon: Truck, text: "Pick Up / Local Delivery" },
+  { icon: MapPin, text: "San Jose, CA" },
 ];
 
 const marqueeItems = [
-  "Trail Mixes",
-  "Energy Bites",
-  "Plantain Chips",
-  "Granola",
-  "Nut Clusters",
-  "Fruit Leather",
-  "Crackers",
-  "Caramel Corn",
+  "Banana Pudding",
+  "Xubie Cake",
+  "Lake Merritt Pop-Up",
+  "Sweets and Treats",
+  "Snack Sundays",
+  "Bay Area Delivery",
+  "Community Booths",
+  "Handcrafted Desserts",
 ];
 
 export function HeroSection() {
@@ -41,19 +42,18 @@ export function HeroSection() {
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-6 space-y-8">
+        <div className="grid lg:grid-cols-12 gap-10 items-center">
+          <div className="lg:col-span-5 space-y-8">
             <span className="inline-block text-xs tracking-widest text-[var(--primary)] uppercase bg-[var(--primary)]/10 px-4 py-2 rounded-full">
-              San Jose, CA | Est. 2026
+              San Jose, CA • Pick Up + Local Delivery
             </span>
             <h1 className="font-serif text-5xl lg:text-7xl leading-tight text-[var(--foreground)]">
-              Snacks That{" "}
-              <span className="text-[var(--primary)]">Spark Joy</span>
+              Snacks That <span className="text-[var(--primary)]">Smack</span>
             </h1>
-            <p className="text-[var(--muted-foreground)] text-lg leading-relaxed max-w-lg">
-              Handcrafted with premium ingredients and boundless love. From
-              sweet bites to savory crunch, every Xubie snack is a celebration
-              of flavor, culture, and community.
+            <p className="text-[var(--muted-foreground)] text-lg leading-relaxed max-w-xl">
+              From Lake Merritt pop-ups to sweets-and-treats tables, Xubie Snacks
+              brings handcrafted desserts, crowd-favorite bites, and real Bay Area
+              community energy to every order.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -64,60 +64,88 @@ export function HeroSection() {
                 <ArrowRight size={18} />
               </Link>
               <Link
-                href="/#menu"
+                href="/#instagram"
                 className="inline-flex items-center justify-center px-8 py-4 border border-[var(--foreground)]/20 text-[var(--foreground)] rounded-full hover:bg-[var(--foreground)]/5 transition-colors"
               >
-                Explore the Menu
+                See the Brand in Motion
               </Link>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-3 max-w-2xl">
+              <div className="rounded-2xl border border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-sm p-4">
+                <p className="text-2xl font-semibold text-[var(--foreground)]">29</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted-foreground)] mt-1">
+                  Instagram Posts
+                </p>
+              </div>
+              <div className="rounded-2xl border border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-sm p-4">
+                <p className="text-2xl font-semibold text-[var(--foreground)]">614</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted-foreground)] mt-1">
+                  Followers
+                </p>
+              </div>
+              <div className="rounded-2xl border border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-sm p-4">
+                <p className="text-2xl font-semibold text-[var(--foreground)]">Local</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted-foreground)] mt-1">
+                  Delivery + Pickup
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-7">
             <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="aspect-square rounded-3xl bg-gradient-to-br from-[var(--primary)]/20 to-[var(--accent)]/20 flex items-center justify-center p-8 animate-float">
-                    <div className="text-center">
-                      <div className="text-6xl mb-2">🥜</div>
-                      <p className="text-sm font-medium text-[var(--foreground)]">
-                        Golden Crunch
-                      </p>
-                    </div>
-                  </div>
-                  <div className="aspect-[4/3] rounded-3xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--primary)]/10 flex items-center justify-center p-6" style={{ animationDelay: "1s" }}>
-                    <div className="text-center">
-                      <div className="text-5xl mb-2">🌿</div>
-                      <p className="text-sm font-medium text-[var(--foreground)]">
-                        Wellness Bites
-                      </p>
-                    </div>
+              <div className="grid md:grid-cols-[1.15fr_0.85fr] gap-4 items-start">
+                <div className="relative aspect-[4/4.6] rounded-[2rem] overflow-hidden shadow-2xl border border-white/40">
+                  <Image
+                    src="/branding/community-smile.jpeg"
+                    alt="Xubie Snacks booth with community gathered around desserts and branded table"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
+                  <div className="absolute left-6 right-6 bottom-6 text-white">
+                    <p className="text-xs uppercase tracking-[0.3em] text-white/80">
+                      Real Bay Area Pop-Up Energy
+                    </p>
+                    <p className="font-serif text-2xl mt-2">
+                      Sweets, treats, merch, QR codes, and community all in one frame.
+                    </p>
                   </div>
                 </div>
-                <div className="space-y-4 pt-8">
-                  <div className="aspect-[4/3] rounded-3xl bg-gradient-to-br from-[var(--primary)]/15 to-[var(--warm)]/30 flex items-center justify-center p-6" style={{ animationDelay: "0.5s" }}>
-                    <div className="text-center">
-                      <div className="text-5xl mb-2">🍫</div>
-                      <p className="text-sm font-medium text-[var(--foreground)]">
-                        Sweet Bites
-                      </p>
-                    </div>
+
+                <div className="grid gap-4">
+                  <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden border border-[var(--border)] bg-[var(--card)] shadow-xl">
+                    <Image
+                      src="/branding/instagram-profile.png"
+                      alt="Xubie Snacks Instagram profile showing brand bio and local delivery positioning"
+                      fill
+                      className="object-cover object-top"
+                    />
                   </div>
-                  <div className="aspect-square rounded-3xl bg-gradient-to-br from-[var(--warm)]/20 to-[var(--accent)]/20 flex items-center justify-center p-8 animate-float" style={{ animationDelay: "1.5s" }}>
-                    <div className="text-center">
-                      <div className="text-6xl mb-2">🌶️</div>
-                      <p className="text-sm font-medium text-[var(--foreground)]">
-                        Savory Crunch
-                      </p>
+                  <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--border)] bg-[var(--card)] shadow-xl">
+                    <Image
+                      src="/branding/community-side.jpeg"
+                      alt="Xubie Snacks event setup with menu board, desserts, and branded banner"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    <div className="absolute left-5 right-5 bottom-5 text-white">
+                      <p className="text-sm font-medium">Menu boards, spin wheel, and booth theatre</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-[var(--background)]/95 backdrop-blur-sm px-6 py-3 rounded-full border border-[var(--border)] shadow-lg">
-                <p className="text-sm text-[var(--muted-foreground)]">
-                  <span className="font-semibold text-[var(--primary)]">12</span>{" "}
-                  handcrafted flavors &{" "}
-                  <span className="font-semibold text-[var(--primary)]">counting</span>
+              <div className="absolute -bottom-5 left-4 right-4 md:left-auto md:right-6 md:w-72 bg-[var(--background)]/95 backdrop-blur-sm px-6 py-4 rounded-3xl border border-[var(--border)] shadow-lg">
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--muted-foreground)] mb-2">
+                  Brand Promise
+                </p>
+                <p className="text-sm text-[var(--foreground)] leading-relaxed">
+                  DM to order, pick up locally, or book a pop-up table that feels
+                  alive before the first bite even lands.
                 </p>
               </div>
             </div>

@@ -4,24 +4,24 @@ import { XUBIE_DATA } from "@/lib/data";
 
 const stats = [
   {
-    value: XUBIE_DATA.company.stats.flavors,
-    suffix: "+",
-    label: "Handcrafted Flavors",
+    value: XUBIE_DATA.company.stats.posts,
+    suffix: "",
+    label: "Instagram Posts",
   },
   {
-    value: XUBIE_DATA.company.stats.happyCustomers,
-    suffix: "+",
-    label: "Happy Customers",
+    value: XUBIE_DATA.company.stats.followers,
+    suffix: "",
+    label: "Followers",
   },
   {
-    value: XUBIE_DATA.company.stats.eventsServed,
+    value: XUBIE_DATA.company.stats.popUps,
     suffix: "+",
-    label: "Events Served",
+    label: "Pop-Ups & Events",
   },
   {
-    value: XUBIE_DATA.company.stats.satisfactionRate,
+    value: XUBIE_DATA.company.stats.approval,
     suffix: "%",
-    label: "Satisfaction Rate",
+    label: "Smack Approval",
   },
 ];
 

@@ -1,17 +1,11 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Plus, Star } from "lucide-react";
 import { XUBIE_DATA } from "@/lib/data";
 import { useCart } from "@/lib/cart";
 
-const categoryEmojis: Record<string, string> = {
-  signature: "⭐",
-  sweet: "🍫",
-  savory: "🌶️",
-  wellness: "🌿",
-  seasonal: "✨",
-};
 
 export function MenuPreview() {
   const [activeCategory, setActiveCategory] = useState("signature");
@@ -32,8 +26,8 @@ export function MenuPreview() {
             <span className="text-[var(--primary)]">Collection</span>
           </h2>
           <p className="text-[var(--muted-foreground)] mt-4">
-            Every snack handcrafted in small batches with premium ingredients.
-            No shortcuts, no compromises — just pure deliciousness.
+            Handcrafted in small batches. DM to order, pick up locally, or
+            catch us at the next pop-up.
           </p>
         </div>
 
@@ -48,7 +42,6 @@ export function MenuPreview() {
                   : "bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--primary)]/10"
               }`}
             >
-              <span className="mr-1.5">{categoryEmojis[cat.id]}</span>
               {cat.name}
             </button>
           ))}
@@ -60,22 +53,24 @@ export function MenuPreview() {
               key={product.id}
               className="group bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
             >
-              <div className="aspect-[4/3] bg-gradient-to-br from-[var(--primary)]/10 to-[var(--accent)]/10 relative overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-7xl group-hover:scale-110 transition-transform duration-500">
-                    {categoryEmojis[product.category]}
-                  </span>
-                </div>
+              <div className="aspect-[4/3] relative overflow-hidden bg-[var(--muted)]">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
                 <div className="absolute top-3 left-3 flex gap-2">
                   {product.tags.map((tag) => (
                     <span
                       key={tag}
-                      className={`px-2.5 py-1 rounded-full text-[10px] uppercase tracking-wider font-medium ${
+                      className={`px-2.5 py-1 rounded-full text-[10px] uppercase tracking-wider font-medium backdrop-blur-sm ${
                         tag === "bestseller"
-                          ? "bg-[var(--primary)] text-[var(--primary-foreground)]"
+                          ? "bg-[var(--primary)]/90 text-[var(--primary-foreground)]"
                           : tag === "new"
-                            ? "bg-[var(--accent)] text-[var(--accent-foreground)]"
-                            : "bg-[var(--background)]/80 text-[var(--foreground)]"
+                            ? "bg-[var(--accent)]/90 text-[var(--accent-foreground)]"
+                            : "bg-white/70 text-[var(--foreground)]"
                       }`}
                     >
                       {tag}
