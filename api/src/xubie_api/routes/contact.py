@@ -24,7 +24,7 @@ class ContactOut(BaseModel):
     message: str
 
 
-@router.post("/contact", response_model=ContactOut)
+@router.post("", response_model=ContactOut)
 def submit_contact(body: ContactIn) -> ContactOut:
     logger.info(
         "[Contact] name=%s email=%s type=%s",

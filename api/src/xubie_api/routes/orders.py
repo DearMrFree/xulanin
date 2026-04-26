@@ -43,7 +43,7 @@ class OrderOut(BaseModel):
 _orders: dict[str, OrderOut] = {}
 
 
-@router.post("/orders", response_model=OrderOut, status_code=201)
+@router.post("", response_model=OrderOut, status_code=201)
 def create_order(body: CreateOrderIn) -> OrderOut:
     order_id = f"XUB-{int(time.time() * 1000) % 10_000_000:07X}"
     subtotal = sum(item.price * item.quantity for item in body.items)
@@ -60,7 +60,7 @@ def create_order(body: CreateOrderIn) -> OrderOut:
     return order
 
 
-@router.get("/orders/{order_id}", response_model=OrderOut)
+@router.get("/{order_id}", response_model=OrderOut)
 def get_order(order_id: str) -> OrderOut:
     order = _orders.get(order_id)
     if not order:

@@ -25,26 +25,26 @@ class Category(BaseModel):
 
 
 CATEGORIES: list[Category] = [
-    Category(id="signature", name="Signature Collection", description="Our most-loved creations"),
-    Category(id="sweet", name="Sweet Bites", description="Indulgent treats"),
-    Category(id="savory", name="Savory Crunch", description="Bold flavors"),
-    Category(id="wellness", name="Wellness Bites", description="Nourishing snacks"),
-    Category(id="seasonal", name="Seasonal Specials", description="Limited-edition"),
+    Category(id="signature", name="Signature Drops", description="The items people recognize from the booth first"),
+    Category(id="sweet", name="Sweets & Treats", description="Dessert-forward favorites with serious repeat energy"),
+    Category(id="savory", name="Savory Crunch", description="Salty, spicy, snackable counterpoints to the sweets"),
+    Category(id="wellness", name="Feel-Good Bites", description="Lighter options that still feel unmistakably Xubie"),
+    Category(id="seasonal", name="Pop-Up Specials", description="Limited runs inspired by events, weekends, and crowd favorites"),
 ]
 
 PRODUCTS: list[Product] = [
-    Product(id=1, name="Golden Crunch Mix", category="signature", price=8.99, description="Signature trail mix with roasted almonds, golden raisins, dark chocolate chips, and sea salt.", tags=["bestseller", "vegan"]),
-    Product(id=2, name="Spiced Plantain Chips", category="signature", price=6.99, description="Thinly sliced plantains with our secret spice blend.", tags=["bestseller", "gluten-free"]),
-    Product(id=3, name="Honey Lavender Granola Bites", category="sweet", price=9.99, description="Clusters of oats, honey, and dried lavender.", tags=["new"]),
-    Product(id=4, name="Cocoa Cashew Clusters", category="sweet", price=10.99, description="Dark cocoa dusted over toasted cashew clusters.", tags=["vegan"]),
-    Product(id=5, name="Chili Lime Peanuts", category="savory", price=5.99, description="Roasted peanuts with chili powder and lime zest.", tags=["gluten-free", "spicy"]),
-    Product(id=6, name="Rosemary Parmesan Crackers", category="savory", price=7.99, description="Artisan crackers with fresh rosemary and aged parmesan.", tags=["new"]),
-    Product(id=7, name="Turmeric Ginger Energy Balls", category="wellness", price=11.99, description="Turmeric, ginger, oats, and dates energy bites.", tags=["vegan", "gluten-free"]),
-    Product(id=8, name="Matcha Coconut Bites", category="wellness", price=10.99, description="Ceremonial-grade matcha meets toasted coconut.", tags=["vegan"]),
-    Product(id=9, name="Maple Pecan Brittle", category="seasonal", price=12.99, description="Vermont maple syrup and toasted pecans brittle.", tags=["seasonal", "limited"]),
-    Product(id=10, name="Strawberry Basil Fruit Leather", category="seasonal", price=8.99, description="Sun-ripened strawberries and fresh basil fruit leather.", tags=["seasonal", "vegan"]),
-    Product(id=11, name="Everything Bagel Nut Mix", category="savory", price=7.49, description="Almonds, cashews, pumpkin seeds with everything bagel seasoning.", tags=["bestseller"]),
-    Product(id=12, name="Vanilla Bean Caramel Corn", category="sweet", price=9.49, description="Caramel corn with real vanilla bean and fleur de sel.", tags=["new"]),
+    Product(id=1, name="Banana Pudding Cup", category="signature", price=8, description="Creamy, layered, and instantly recognizable from the booth. The cup that keeps showing up in reaction videos and repeat orders.", tags=["bestseller", "crowd-favorite"]),
+    Product(id=2, name="Xubie Cake Slice", category="signature", price=6, description="The namesake dessert with full brand energy — soft, sweet, and built to make first-time tasters believers.", tags=["bestseller", "signature"]),
+    Product(id=3, name="Peach Cobbler Jar", category="sweet", price=9.5, description="Warm-spiced peaches layered into a grab-and-go dessert jar that feels like comfort food at pop-up speed.", tags=["new"]),
+    Product(id=4, name="Cookies & Cream Pudding Cup", category="sweet", price=8.5, description="A chilled dessert cup with creamy texture, cookie crunch, and the kind of sweetness that photographs beautifully.", tags=["customer-loved"]),
+    Product(id=5, name="Hot Honey Plantain Crunch", category="savory", price=7, description="Sweet heat and a crisp finish — the perfect snack-table balance when the dessert cups are selling out fast.", tags=["spicy", "gluten-free"]),
+    Product(id=6, name="Chili Lime Party Mix", category="savory", price=7.5, description="A tangy, salty mix built for sharing at events, creative sessions, and late-night Bay Area linkups.", tags=["gluten-free"]),
+    Product(id=7, name="Coconut Date Energy Bites", category="wellness", price=9, description="Naturally sweet bites with a softer energy profile for customers who want the feel-good side of the brand.", tags=["vegan", "gluten-free"]),
+    Product(id=8, name="Citrus Ginger Fruit Cup", category="wellness", price=8, description="Bright, fresh, and clean — a cooler counterpoint to richer desserts without losing the handcrafted feel.", tags=["vegan"]),
+    Product(id=9, name="Lake Merritt Sunday Box", category="seasonal", price=18, description="A weekend-only combo inspired by the booth moments and reel captions that helped the brand catch fire.", tags=["seasonal", "limited"]),
+    Product(id=10, name="Vendor Table Treat Tray", category="seasonal", price=28, description="Designed for gatherings, birthdays, and community tables that want the full Xubie visual spread.", tags=["seasonal", "preorder"]),
+    Product(id=11, name="Mini Dessert Flight", category="sweet", price=14, description="A tasting set for anyone deciding between pudding, cake, and whatever else is moving at the booth that day.", tags=["new"]),
+    Product(id=12, name="Celebration Crowd Pack", category="signature", price=32, description="A larger-format order for creators, families, and event hosts who want the Xubie table to feel instantly stocked.", tags=["custom"]),
 ]
 
 
