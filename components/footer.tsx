@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
-import { InstagramIcon } from "@/components/icons";
+import { InstagramIcon, TikTokIcon } from "@/components/icons";
 
 export function Footer() {
   return (
@@ -9,24 +10,28 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-[var(--primary)] flex items-center justify-center">
-                <span className="text-[var(--primary-foreground)] font-serif text-lg font-bold">
-                  X
-                </span>
+              <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-white/10">
+                <Image
+                  src="/branding/xubie-logo.png"
+                  alt="Xubie Snacks logo"
+                  fill
+                  className="object-cover"
+                  sizes="40px"
+                />
               </div>
               <div>
                 <span className="font-serif text-lg block leading-tight">
                   Xubie Snacks
                 </span>
                 <span className="text-[10px] tracking-[0.2em] text-[var(--background)]/50 uppercase">
-                  By Xuliani LLC
+                  Snacks That Smack
                 </span>
               </div>
             </div>
-            <p className="text-sm text-[var(--background)]/60 leading-relaxed max-w-sm">
-              Handcrafted snacks made with love in San Jose, California.
-              From our kitchen to your door — every bite tells a story of
-              passion, culture, and community.
+            <p className="text-sm text-[var(--background)]/60 leading-relaxed max-w-md">
+              Handcrafted sweets and treats from San Jose, built for pickup,
+              local delivery, pop-ups, and the kind of community moments people
+              post before they even get home.
             </p>
             <div className="mt-4 flex items-center gap-4">
               <a
@@ -36,6 +41,14 @@ export function Footer() {
                 className="text-[var(--background)]/60 hover:text-[var(--primary)] transition-colors"
               >
                 <InstagramIcon size={20} />
+              </a>
+              <a
+                href="https://www.tiktok.com/@xubiesnacks"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--background)]/60 hover:text-[var(--primary)] transition-colors"
+              >
+                <TikTokIcon size={20} />
               </a>
             </div>
           </div>
@@ -88,12 +101,10 @@ export function Footer() {
 
         <div className="mt-16 pt-8 border-t border-[var(--background)]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[var(--background)]/40">
-            &copy; {new Date().getFullYear()} Xuliani LLC (DBA Xubie Snacks).
-            All rights reserved.
+            &copy; {new Date().getFullYear()} Xuliani LLC (DBA Xubie Snacks). All rights reserved.
           </p>
           <p className="text-xs text-[var(--background)]/40 flex items-center gap-1">
-            Made with <Heart size={12} className="text-[var(--primary)]" /> in
-            San Jose, CA
+            Made with <Heart size={12} className="text-[var(--primary)]" /> in San Jose, CA
           </p>
         </div>
       </div>

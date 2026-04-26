@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, ShoppingBag } from "lucide-react";
@@ -34,17 +35,21 @@ export function Navigation() {
     >
       <nav className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-11 h-11 rounded-full bg-[var(--primary)] flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-            <span className="text-[var(--primary-foreground)] font-serif text-xl font-bold">
-              X
-            </span>
+          <div className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-[var(--primary)]/15 transition-all duration-300 group-hover:scale-110">
+            <Image
+              src="/branding/xubie-logo.png"
+              alt="Xubie Snacks logo"
+              fill
+              className="object-cover"
+              sizes="44px"
+            />
           </div>
           <div className="hidden sm:block">
             <span className="font-serif text-lg tracking-wide text-[var(--foreground)] block leading-tight">
               Xubie Snacks
             </span>
             <span className="text-[10px] tracking-[0.2em] text-[var(--muted-foreground)] uppercase">
-              Handcrafted Joy
+              Snacks That Smack
             </span>
           </div>
         </Link>
