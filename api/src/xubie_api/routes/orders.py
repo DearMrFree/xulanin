@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import time
+import uuid
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException
@@ -45,7 +46,7 @@ _orders: dict[str, OrderOut] = {}
 
 @router.post("", response_model=OrderOut, status_code=201)
 def create_order(body: CreateOrderIn) -> OrderOut:
-    order_id = f"XUB-{int(time.time() * 1000) % 10_000_000:07X}"
+    order_id = f"XUB-{uuid.uuid4().hex[:8].upper()}"
     subtotal = sum(item.price * item.quantity for item in body.items)
 
     order = OrderOut(
