@@ -4,24 +4,24 @@ import { XUBIE_DATA } from "@/lib/data";
 
 const stats = [
   {
-    value: XUBIE_DATA.company.stats.posts,
+    value: XUBIE_DATA.company.stats.tiktokVideos,
     suffix: "",
-    label: "Instagram Posts",
+    label: "TikTok Videos",
   },
   {
-    value: XUBIE_DATA.company.stats.followers,
+    value: XUBIE_DATA.company.stats.tiktokLikes,
     suffix: "",
-    label: "Followers",
+    label: "TikTok Likes",
+  },
+  {
+    value: XUBIE_DATA.company.stats.followers + XUBIE_DATA.company.stats.tiktokFollowers,
+    suffix: "+",
+    label: "Social Followers",
   },
   {
     value: XUBIE_DATA.company.stats.popUps,
     suffix: "+",
     label: "Pop-Ups & Events",
-  },
-  {
-    value: XUBIE_DATA.company.stats.approval,
-    suffix: "%",
-    label: "Smack Approval",
   },
 ];
 

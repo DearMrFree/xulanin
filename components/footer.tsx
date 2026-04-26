@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
-import { InstagramIcon } from "@/components/icons";
+import { InstagramIcon, TikTokIcon } from "@/components/icons";
 
 export function Footer() {
   return (
@@ -41,6 +41,14 @@ export function Footer() {
                 className="text-[var(--background)]/60 hover:text-[var(--primary)] transition-colors"
               >
                 <InstagramIcon size={20} />
+              </a>
+              <a
+                href="https://www.tiktok.com/@xubiesnacks"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--background)]/60 hover:text-[var(--primary)] transition-colors"
+              >
+                <TikTokIcon size={20} />
               </a>
             </div>
           </div>

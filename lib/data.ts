@@ -9,6 +9,16 @@ export const XUBIE_DATA = {
     email: "13goonies@gmail.com",
     website: "https://xulanin.com",
     instagram: "https://www.instagram.com/xubie_snacks",
+    tiktok: {
+      url: "https://www.tiktok.com/@xubiesnacks",
+      handle: "@xubiesnacks",
+      stats: {
+        videos: 47,
+        followers: 577,
+        likes: 4722,
+        following: 453,
+      },
+    },
     tagline: "Snacks That Smack",
     mission:
       "Handcrafted sweets and treats rooted in community, built for DM-to-order pickup, local delivery, and unforgettable Bay Area pop-ups.",
@@ -17,6 +27,9 @@ export const XUBIE_DATA = {
     stats: {
       posts: 29,
       followers: 614,
+      tiktokFollowers: 577,
+      tiktokVideos: 47,
+      tiktokLikes: 4722,
       popUps: 25,
       approval: 100,
     },
