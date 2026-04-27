@@ -43,9 +43,9 @@ export function StorySection() {
             </p>
             <div className="mt-8 p-6 bg-[var(--secondary)] rounded-2xl border border-[var(--border)]">
               <div className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-full bg-[var(--primary)]/10 flex items-center justify-center shrink-0 overflow-hidden">
+                <div className="w-14 h-14 rounded-full bg-[var(--primary)]/10 flex items-center justify-center shrink-0 overflow-hidden ring-2 ring-[var(--primary)]/20">
                   <Image
-                    src="/branding/xubie-logo.png"
+                    src="/images/xubie-logo.jpeg"
                     alt="Xubie Snacks logo badge"
                     width={56}
                     height={56}

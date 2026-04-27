@@ -10,20 +10,20 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-white/10">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[var(--primary)]/30 shadow-lg">
                 <Image
-                  src="/branding/xubie-logo.png"
+                  src="/images/xubie-logo.jpeg"
                   alt="Xubie Snacks logo"
                   fill
                   className="object-cover"
-                  sizes="40px"
+                  sizes="48px"
                 />
               </div>
               <div>
-                <span className="font-serif text-lg block leading-tight">
+                <span className="font-serif text-xl block leading-tight font-semibold">
                   Xubie Snacks
                 </span>
-                <span className="text-[10px] tracking-[0.2em] text-[var(--background)]/50 uppercase">
+                <span className="text-[10px] tracking-[0.2em] text-[var(--primary)] uppercase font-medium">
                   Snacks That Smack
                 </span>
               </div>

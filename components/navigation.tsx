@@ -35,20 +35,20 @@ export function Navigation() {
     >
       <nav className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-[var(--primary)]/15 transition-all duration-300 group-hover:scale-110">
+          <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[var(--primary)]/30 shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:ring-[var(--primary)]/50">
             <Image
-              src="/branding/xubie-logo.png"
+              src="/images/xubie-logo.jpeg"
               alt="Xubie Snacks logo"
               fill
               className="object-cover"
-              sizes="44px"
+              sizes="48px"
             />
           </div>
           <div className="hidden sm:block">
-            <span className="font-serif text-lg tracking-wide text-[var(--foreground)] block leading-tight">
+            <span className="font-serif text-xl tracking-wide text-[var(--foreground)] block leading-tight font-semibold">
               Xubie Snacks
             </span>
-            <span className="text-[10px] tracking-[0.2em] text-[var(--muted-foreground)] uppercase">
+            <span className="text-[10px] tracking-[0.2em] text-[var(--primary)] uppercase font-medium">
               Snacks That Smack
             </span>
           </div>

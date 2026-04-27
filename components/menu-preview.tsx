@@ -123,10 +123,10 @@ export function MenuPreview() {
         <div className="text-center mt-12">
           <Link
             href="/menu"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--foreground)] text-[var(--background)] rounded-full hover:opacity-90 transition-opacity text-sm tracking-wide"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent)] text-[var(--accent-foreground)] rounded-full hover:bg-[var(--accent)]/90 transition-all hover:shadow-xl text-sm tracking-wide"
           >
             View Full Menu & Order
-            <ArrowRight size={16} />
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

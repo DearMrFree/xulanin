@@ -82,9 +82,9 @@ export function InstagramSection() {
             href="https://www.instagram.com/xubie_snacks"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border)] rounded-full text-sm text-[var(--foreground)] hover:bg-[var(--primary)]/5 transition-colors"
+            className="group inline-flex items-center gap-2 px-6 py-3 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-full text-sm hover:bg-[var(--primary)]/90 transition-all hover:shadow-lg hover:shadow-[var(--primary)]/20"
           >
-            <InstagramIcon size={18} className="text-[var(--primary)]" />
+            <InstagramIcon size={18} />
             Follow @xubie_snacks
           </a>
         </div>

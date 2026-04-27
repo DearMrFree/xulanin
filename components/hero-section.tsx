@@ -24,9 +24,10 @@ export function HeroSection() {
   return (
     <section id="home" className="min-h-screen relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-2/3 h-full bg-[var(--primary)]/5" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[var(--accent)]/10 rounded-full blur-3xl" />
-        <div className="absolute top-20 right-20 w-64 h-64 bg-[var(--primary)]/8 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-bl from-[var(--primary)]/10 via-[var(--teal)]/5 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[var(--primary)]/15 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-20 w-72 h-72 bg-[var(--teal)]/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-[var(--cookie)]/15 rounded-full blur-2xl" />
       </div>
 
       <div className="container mx-auto px-6 pt-32 pb-12 relative">
@@ -44,11 +45,18 @@ export function HeroSection() {
 
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-5 space-y-8">
-            <span className="inline-block text-xs tracking-widest text-[var(--primary)] uppercase bg-[var(--primary)]/10 px-4 py-2 rounded-full">
+            <span className="inline-flex items-center gap-2 text-xs tracking-widest text-[var(--primary)] uppercase bg-[var(--primary)]/15 px-5 py-2.5 rounded-full border border-[var(--primary)]/20 shadow-sm">
+              <span className="w-2 h-2 bg-[var(--primary)] rounded-full animate-pulse"></span>
               San Jose, CA • Pick Up + Local Delivery
             </span>
             <h1 className="font-serif text-5xl lg:text-7xl leading-tight text-[var(--foreground)]">
-              Snacks That <span className="text-[var(--primary)]">Smack</span>
+              Snacks That{" "}
+              <span className="relative inline-block text-[var(--primary)]">
+                Smack
+                <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 100 12" preserveAspectRatio="none">
+                  <path d="M0,8 Q25,0 50,8 T100,8" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" className="text-[var(--primary)]/40"/>
+                </svg>
+              </span>
             </h1>
             <p className="text-[var(--muted-foreground)] text-lg leading-relaxed max-w-xl">
               From Lake Merritt pop-ups to sweets-and-treats tables, Xubie Snacks
@@ -58,14 +66,14 @@ export function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/menu"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-full hover:opacity-90 transition-opacity shadow-lg"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-full hover:bg-[var(--primary)]/90 transition-all shadow-lg hover:shadow-xl hover:shadow-[var(--primary)]/20 hover:-translate-y-0.5"
               >
                 Order Now
-                <ArrowRight size={18} />
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/#instagram"
-                className="inline-flex items-center justify-center px-8 py-4 border border-[var(--foreground)]/20 text-[var(--foreground)] rounded-full hover:bg-[var(--foreground)]/5 transition-colors"
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-[var(--accent)] text-[var(--accent)] rounded-full hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] transition-all"
               >
                 See the Brand in Motion
               </Link>

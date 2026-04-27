@@ -6,7 +6,7 @@ const stepIcons = [Search, Package, Truck, PartyPopper];
 
 export function HowItWorks() {
   return (
-    <section className="py-24 bg-[var(--secondary)]/50">
+    <section className="py-24 bg-gradient-to-br from-[var(--secondary)] via-[var(--teal)]/10 to-[var(--secondary)]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <span className="text-xs tracking-widest text-[var(--primary)] uppercase">
@@ -26,7 +26,7 @@ export function HowItWorks() {
                 {index < XUBIE_DATA.howItWorks.length - 1 && (
                   <div className="hidden lg:block absolute top-10 left-[60%] w-[80%] border-t-2 border-dashed border-[var(--primary)]/20" />
                 )}
-                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-[var(--primary)]/10 flex items-center justify-center group-hover:bg-[var(--primary)]/20 transition-colors">
+                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-[var(--card)] shadow-lg border border-[var(--border)] flex items-center justify-center group-hover:border-[var(--primary)]/30 group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-300">
                   <Icon size={28} className="text-[var(--primary)]" />
                 </div>
                 <div className="text-xs text-[var(--primary)] font-mono mb-2">

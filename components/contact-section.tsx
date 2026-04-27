@@ -152,7 +152,7 @@ export function ContactSection() {
               href="https://www.instagram.com/xubie_snacks"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-3 px-5 py-3 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-xl hover:bg-[var(--primary)]/90 transition-all hover:shadow-lg"
             >
               <InstagramIcon size={18} />
               <span className="text-sm font-medium">

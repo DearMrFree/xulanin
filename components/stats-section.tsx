@@ -70,11 +70,11 @@ function AnimatedCounter({
 
 export function StatsSection() {
   return (
-    <section className="py-20 border-y border-[var(--border)]">
+    <section className="py-20 bg-gradient-to-r from-[var(--primary)]/5 via-[var(--teal)]/5 to-[var(--primary)]/5 border-y border-[var(--border)]">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
+            <div key={stat.label} className="text-center p-6 rounded-2xl bg-[var(--card)]/50 backdrop-blur-sm border border-[var(--border)]/50 hover:border-[var(--primary)]/30 transition-all duration-300 hover:-translate-y-1">
               <AnimatedCounter target={stat.value} suffix={stat.suffix} />
               <p className="text-sm text-[var(--muted-foreground)] mt-2 tracking-wide uppercase">
                 {stat.label}

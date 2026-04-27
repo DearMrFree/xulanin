@@ -4,7 +4,7 @@ import { XUBIE_DATA } from "@/lib/data";
 
 export function TestimonialsSection() {
   return (
-    <section id="reviews" className="py-24 bg-[var(--secondary)]/50">
+    <section id="reviews" className="py-24 bg-gradient-to-b from-[var(--secondary)] via-[var(--teal)]/5 to-[var(--secondary)]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <span className="text-xs tracking-widest text-[var(--primary)] uppercase">
