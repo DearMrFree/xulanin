@@ -74,6 +74,7 @@ export function XulaninChatbot() {
         [
           "How do I pay?",
           "Do you deliver?",
+          "What are the fees?",
           "What sizes are available?",
           "Do you cater events?",
           "Talk to a human",
@@ -94,8 +95,13 @@ export function XulaninChatbot() {
       );
     } else if (option === "Do you deliver?") {
       addBotMessage(
-        "Yes! We do San Jose pickup and Bay Area local delivery. Same-day options may be available.",
-        ["Place an Order", "Ask a Question"]
+        "Yes! We deliver across the Bay Area:\n\n**Pickup** — FREE (15–30 min)\n**South Bay** — $3.99 (25–40 min)\n**Peninsula** — $5.99 (35–55 min)\n**East Bay** — $7.99 (40–60 min)\n**SF / North Bay** — $9.99 (50–75 min)\n\nPlus 5% service fee (max $5) and CA tax. Visit our menu page for full details!",
+        ["Place an Order", "What are the fees?", "View Menu"]
+      );
+    } else if (option === "What are the fees?") {
+      addBotMessage(
+        "Here's how our fees work:\n\n**Delivery Fee** — Based on your zone ($0–$9.99)\n**Service Fee** — 5% of subtotal (capped at $5)\n**Small Order Fee** — $2 on orders under $15\n**Tax** — 9.375% CA sales tax\n**Tip** — Optional, always appreciated!\n\nPickup is always free!",
+        ["Place an Order", "Do you deliver?", "View Menu"]
       );
     } else if (option === "What sizes are available?") {
       addBotMessage(
@@ -187,6 +193,8 @@ export function XulaninChatbot() {
       processOption("Do you deliver?");
     } else if (lower.includes("pay") || lower.includes("cash") || lower.includes("zelle")) {
       processOption("How do I pay?");
+    } else if (lower.includes("fee") || lower.includes("charge") || lower.includes("cost") || lower.includes("tax") || lower.includes("tip")) {
+      processOption("What are the fees?");
     } else if (lower.includes("cater") || lower.includes("event") || lower.includes("party")) {
       processOption("Do you cater events?");
     } else if (lower.includes("contact") || lower.includes("phone") || lower.includes("human") || lower.includes("talk")) {

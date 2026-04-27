@@ -123,7 +123,11 @@ export const XUBIE_DATA = {
     },
     {
       q: "Do you offer pickup or delivery?",
-      a: "Yes. Xubie currently focuses on San Jose pickup and Bay Area local delivery. Same-day options may be available depending on the menu and event schedule.",
+      a: "Yes! Pickup is always free from our San Jose location (15–30 min). We also deliver across the Bay Area: South Bay ($3.99), Peninsula ($5.99), East Bay ($7.99), and SF/North Bay ($9.99). Estimated delivery times vary by zone.",
+    },
+    {
+      q: "What fees are there?",
+      a: "We keep it transparent! There's a 5% service fee (capped at $5), a $2 small order fee on orders under $15, and CA sales tax (9.375%). Delivery fees depend on your zone. Pickup is always free. Tips are optional but appreciated!",
     },
     {
       q: "What sizes are available?",
