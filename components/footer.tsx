@@ -64,6 +64,7 @@ export function Footer() {
                 { href: "/#reviews", label: "Reviews" },
                 { href: "/#faq", label: "FAQ" },
                 { href: "/#contact", label: "Contact" },
+                { href: "/licensing", label: "Licensing & Compliance" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
@@ -92,7 +93,6 @@ export function Footer() {
                   School of AI (sof.ai)
                 </a>
               </li>
-              <li>Dr. Freedom Cheteni</li>
               <li>Devin (Software Engineer)</li>
               <li>The Xuliani AI Agent</li>
             </ul>

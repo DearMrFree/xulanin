@@ -67,9 +67,6 @@ export function StorySection() {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-4">
-              <div className="px-4 py-2 bg-[var(--primary)]/5 rounded-full text-sm text-[var(--primary)]">
-                Professor: {XUBIE_DATA.founder.professor}
-              </div>
               <div className="px-4 py-2 bg-[var(--accent)]/10 rounded-full text-sm text-[var(--accent-foreground)]">
                 Engineer: {XUBIE_DATA.founder.engineer}
               </div>

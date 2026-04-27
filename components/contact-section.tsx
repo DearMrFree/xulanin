@@ -14,9 +14,9 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "13goonies@gmail.com",
+    value: "xubiesnacks@yahoo.com",
     sub: "We respond within 24 hours",
-    href: "mailto:13goonies@gmail.com",
+    href: "mailto:xubiesnacks@yahoo.com",
   },
   {
     icon: MapPin,

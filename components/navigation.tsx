@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/#story", label: "Our Story" },
   { href: "/#reviews", label: "Reviews" },
   { href: "/#contact", label: "Contact" },
+  { href: "/licensing", label: "Licensing" },
 ];
 
 export function Navigation() {

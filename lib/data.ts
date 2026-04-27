@@ -4,7 +4,7 @@ export const XUBIE_DATA = {
     founded: 2026,
     location: "2095 Fruitdale Avenue, San Jose, CA 95128",
     phone: "(650) 656-0483",
-    email: "13goonies@gmail.com",
+    email: "xubiesnacks@yahoo.com",
     website: "https://xulanin.com",
     instagram: "https://www.instagram.com/xubie_snacks",
     tiktok: {
@@ -35,8 +35,7 @@ export const XUBIE_DATA = {
   founder: {
     name: "Nina Lux",
     title: "Founder & Chief Snack Officer",
-    bio: "Nina Lux is a student entrepreneur studying entrepreneurship and human flourishing at the School of AI. Through Xubie Snacks, she turned an idea into a living brand with real booths, returning customers, social proof, and a visual identity people instantly recognize. With mentorship from Dr. Freedom Cheteni and product support from Devin and the Xuliani AI agent, Nina is building a business that feels both community-first and internet-native.",
-    professor: "Dr. Freedom Cheteni",
+    bio: "Nina Lux is a student entrepreneur studying entrepreneurship and human flourishing at the School of AI. Through Xubie Snacks, she turned an idea into a living brand with real booths, returning customers, social proof, and a visual identity people instantly recognize. With product support from Devin and the Xuliani AI agent, Nina is building a business that feels both community-first and internet-native.",
     engineer: "Devin (AI Software Engineer)",
     school: "School of AI (sof.ai)",
   },
@@ -259,7 +258,7 @@ export const XUBIE_DATA = {
     },
     {
       q: "Who is behind Xubie Snacks?",
-      a: "Xubie Snacks is founded and run by Nina Lux, a student entrepreneur at the School of AI. The venture is being built with guidance from Dr. Freedom Cheteni and engineering support from Devin.",
+      a: "Xubie Snacks is founded and run by Nina Lux, a student entrepreneur at the School of AI. The venture is being built with engineering support from Devin and the Xuliani AI agent.",
     },
   ],
   howItWorks: [
