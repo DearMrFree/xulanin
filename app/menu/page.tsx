@@ -70,7 +70,7 @@ export default function MenuPage() {
   );
 
   const tipAmount = useMemo(() => {
-    if (customTip) return parseFloat(customTip) || 0;
+    if (customTip) return Math.max(0, parseFloat(customTip) || 0);
     if (tipPercent !== null) return total * tipPercent;
     return 0;
   }, [total, tipPercent, customTip]);
