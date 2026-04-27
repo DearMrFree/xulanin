@@ -51,7 +51,7 @@ export default function MenuPage() {
 
   const [orderType, setOrderType] = useState<OrderType>("pickup");
   const [selectedZoneId, setSelectedZoneId] = useState<string>("pickup");
-  const [tipPercent, setTipPercent] = useState<number | null>(0.15);
+  const [tipPercent, setTipPercent] = useState<number | null>(0);
   const [customTip, setCustomTip] = useState("");
   const [showZoneSelector, setShowZoneSelector] = useState(false);
   const [showFeeInfo, setShowFeeInfo] = useState(false);
@@ -683,6 +683,12 @@ export default function MenuPage() {
                         <span className="text-[var(--muted-foreground)]">Tax</span>
                         <span>${fees.tax.toFixed(2)}</span>
                       </div>
+                      {fees.tip > 0 && (
+                        <div className="flex justify-between text-sm">
+                          <span className="text-[var(--muted-foreground)]">Tip</span>
+                          <span>${fees.tip.toFixed(2)}</span>
+                        </div>
+                      )}
                       <div className="border-t border-[var(--border)] pt-2 flex justify-between font-semibold">
                         <span>Total</span>
                         <span className="text-lg text-[var(--primary)]">
