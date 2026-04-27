@@ -1,55 +1,54 @@
-import type { Metadata } from "next";
-import Script from "next/script";
-import { DM_Sans, Playfair_Display } from "next/font/google";
-import { CartProvider } from "@/lib/cart-provider";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Space_Grotesk, Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import { CartProvider } from '@/lib/cart-context'
+import './globals.css'
 
-const dmSans = DM_Sans({
+const spaceGrotesk = Space_Grotesk({ 
   subsets: ["latin"],
-  variable: "--font-dm-sans",
-  display: "swap",
+  variable: '--font-sans'
 });
-
-const playfair = Playfair_Display({
+const inter = Inter({ 
   subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
+  variable: '--font-body'
 });
 
 export const metadata: Metadata = {
-  title: "Xubie Snacks | Handcrafted Snacks That Spark Joy",
-  description:
-    "Artisan snacks handcrafted in San Jose, CA. From signature trail mixes to wellness bites, Xubie Snacks brings joy to every occasion. Order online for Bay Area delivery.",
-  keywords:
-    "snacks, artisan snacks, handcrafted, San Jose, Bay Area, trail mix, healthy snacks, vegan snacks, gluten free, party snacks, corporate catering",
-  openGraph: {
-    title: "Xubie Snacks | Handcrafted Snacks That Spark Joy",
-    description:
-      "Artisan snacks made with love by Nina Lux. Fresh, handcrafted, and delivered to your door in the Bay Area.",
-    type: "website",
-    url: "https://xulanin.com",
+  title: 'Xubie Snacks | Snack Different',
+  description: 'Discover Xubie Snacks - bold flavors, good vibes, and snacks that hit different. Follow our journey on Instagram.',
+  generator: 'v0.app',
+  icons: {
+    icon: [
+      {
+        url: '/icon-light-32x32.png',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/icon-dark-32x32.png',
+        media: '(prefers-color-scheme: dark)',
+      },
+      {
+        url: '/icon.svg',
+        type: 'image/svg+xml',
+      },
+    ],
+    apple: '/apple-icon.png',
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased">
-        <CartProvider>{children}</CartProvider>
-        {/*
-         * Xuliani concierge — sourced from sof.ai so it updates as Nina's
-         * agent trains. The bundle injects a Shadow-DOM-isolated chat
-         * bubble into the bottom-right and POSTs to sof.ai's embed API.
-         */}
-        <Script
-          src="https://sof.ai/embed/xuliani.js"
-          strategy="afterInteractive"
-        />
+    <html lang="en">
+      <body className={`${spaceGrotesk.variable} ${inter.variable} font-sans antialiased`}>
+        <CartProvider>
+          {children}
+        </CartProvider>
+        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
-  );
+  )
 }

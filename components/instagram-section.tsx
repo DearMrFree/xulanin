@@ -1,94 +1,116 @@
-"use client";
-import Image from "next/image";
-import { InstagramIcon } from "@/components/icons";
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+import { Instagram, Heart, MessageCircle, ExternalLink } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 const instagramPosts = [
-  {
-    src: "/branding/instagram-grid.png",
-    alt: "Xubie Snacks Instagram grid showing Lake Merritt pop-up videos and product reactions",
-    caption: "Lake Merritt, Snack Sundays, first bites, and real-time customer reactions.",
-  },
-  {
-    src: "/branding/community-hero.jpeg",
-    alt: "Xubie Snacks event booth with branded tablecloth, desserts, and payment QR codes",
-    caption: "The booth world: branded tablecloth, desserts, merch, and QR-powered ordering.",
-  },
-  {
-    src: "/branding/community-closeup.jpeg",
-    alt: "Xubie Snacks booth with friends, family, and desserts at an event",
-    caption: "Community-first visuals that make the brand feel like a scene, not just a table.",
-  },
-  {
-    src: "/branding/community-smile.jpeg",
-    alt: "Xubie Snacks pop-up with smiling group and desserts on display",
-    caption: "Sweets and treats that pull people in before they even ask the price.",
-  },
-  {
-    src: "/branding/community-side.jpeg",
-    alt: "Xubie Snacks event setup with menu board, spinner, and dessert display",
-    caption: "Menu boards, spin wheel, tasting trays, and the kind of setup people remember.",
-  },
-  {
-    src: "/branding/instagram-profile.png",
-    alt: "Xubie Snacks Instagram profile highlighting DM to order and local delivery",
-    caption: "DM to order. Pick up or local delivery. San Jose, CA. Snacks That Smack.",
-  },
-];
+  { id: 1, image: "/images/hero-snacks.jpg", likes: "2.4K", comments: "89" },
+  { id: 2, image: "/images/product-1.jpg", likes: "1.8K", comments: "56" },
+  { id: 3, image: "/images/product-2.jpg", likes: "3.1K", comments: "124" },
+  { id: 4, image: "/images/lifestyle.jpg", likes: "4.2K", comments: "203" },
+  { id: 5, image: "/images/product-3.jpg", likes: "2.9K", comments: "97" },
+  { id: 6, image: "/images/hero-snacks.jpg", likes: "1.5K", comments: "45" },
+]
 
 export function InstagramSection() {
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section id="instagram" className="py-24">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <span className="text-xs tracking-widest text-[var(--primary)] uppercase">
-            Follow Us
-          </span>
-          <h2 className="font-serif text-4xl lg:text-5xl mt-4 text-[var(--foreground)]">
-            <span className="text-[var(--primary)]">@xubie_snacks</span> in
-            Motion
+    <section 
+      id="vibes"
+      ref={sectionRef}
+      className="py-32 px-6 bg-card"
+    >
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <Instagram className="h-8 w-8 text-primary" />
+            <span className="text-2xl font-bold">@xubie_snacks</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+            SWEET <span className="text-primary">VIBES</span>
           </h2>
-          <p className="text-[var(--muted-foreground)] mt-4 max-w-2xl mx-auto">
-            Real booth photos, reels, customer reactions, menu drops, and the Bay
-            Area pop-up energy that defines the brand.
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+            Fresh bakes. Happy customers. Sweet moments.
+            Follow us for new flavors and to place your order!
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {/* Instagram Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
           {instagramPosts.map((post, index) => (
             <a
-              key={index}
-              href="https://www.instagram.com/xubie_snacks"
+              key={post.id}
+              href="https://www.instagram.com/xubie_snacks/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative aspect-square rounded-2xl overflow-hidden border border-[var(--border)] bg-[var(--card)]"
+              className={`group relative aspect-square rounded-2xl overflow-hidden transition-all duration-700 ${
+                isVisible 
+                  ? "opacity-100 scale-100" 
+                  : "opacity-0 scale-90"
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               <Image
-                src={post.src}
-                alt={post.alt}
+                src={post.image}
+                alt={`Xubie Snacks Instagram post ${post.id}`}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <p className="text-white text-sm leading-snug">{post.caption}</p>
+              
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="flex items-center gap-6 text-foreground">
+                  <div className="flex items-center gap-2">
+                    <Heart className="h-5 w-5 fill-primary text-primary" />
+                    <span className="font-semibold">{post.likes}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MessageCircle className="h-5 w-5" />
+                    <span className="font-semibold">{post.comments}</span>
+                  </div>
+                </div>
               </div>
             </a>
           ))}
         </div>
 
-        <div className="text-center mt-8">
-          <a
-            href="https://www.instagram.com/xubie_snacks"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border)] rounded-full text-sm text-[var(--foreground)] hover:bg-[var(--primary)]/5 transition-colors"
+        {/* CTA */}
+        <div className={`text-center transition-all duration-1000 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          <Button 
+            asChild
+            size="lg" 
+            className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-6 text-base uppercase tracking-widest"
           >
-            <InstagramIcon size={18} className="text-[var(--primary)]" />
-            Follow @xubie_snacks
-          </a>
+            <a href="https://www.instagram.com/xubie_snacks/" target="_blank" rel="noopener noreferrer">
+              <Instagram className="mr-2 h-5 w-5" />
+              Follow @xubie_snacks
+              <ExternalLink className="ml-2 h-4 w-4" />
+            </a>
+          </Button>
         </div>
       </div>
     </section>
-  );
+  )
 }
