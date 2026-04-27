@@ -91,10 +91,10 @@ export function Footer() {
               </li>
               <li>
                 <a 
-                  href="mailto:hello@xubiesnacks.com"
+                  href="tel:4088496090"
                   className="text-foreground hover:text-primary transition-colors flex items-center gap-2 group"
                 >
-                  Email Us
+                  (408)-849-6090
                   <ArrowUpRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
@@ -110,7 +110,7 @@ export function Footer() {
             © {new Date().getFullYear()} Xubie Snacks. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
-            Baked with Love.
+            Snacks That Smack. Baked with Love. &nbsp;|&nbsp; San Jose, CA 95116
           </p>
         </div>
       </div>

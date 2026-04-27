@@ -20,7 +20,7 @@ export default function CheckoutPage() {
     zip: '',
     deliveryDate: '',
     notes: '',
-    paymentMethod: 'venmo',
+    paymentMethod: 'cashapp',
     venmoHandle: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -214,30 +214,24 @@ export default function CheckoutPage() {
               <div className="bg-card border border-border rounded-2xl p-8">
                 <h2 className="text-2xl font-bold mb-6">Payment Method</h2>
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 p-4 rounded-lg border-2 border-primary bg-primary/5">
+                  <div className="flex items-center gap-3 p-4 rounded-lg border-2 border-primary bg-primary/10">
                     <input
                       type="radio"
-                      id="venmo"
+                      id="cashapp"
                       name="paymentMethod"
-                      value="venmo"
-                      checked={formData.paymentMethod === 'venmo'}
+                      value="cashapp"
+                      checked={formData.paymentMethod === 'cashapp'}
                       onChange={handleInputChange}
                       className="w-4 h-4"
                     />
-                    <label htmlFor="venmo" className="flex-1 cursor-pointer font-semibold">
-                      Venmo / CashApp
+                    <label htmlFor="cashapp" className="flex-1 cursor-pointer">
+                      <span className="font-bold">CashApp</span>
+                      <span className="ml-2 text-primary font-mono font-semibold">$XULANIN7</span>
                     </label>
                   </div>
-                  {formData.paymentMethod === 'venmo' && (
-                    <input
-                      type="text"
-                      name="venmoHandle"
-                      placeholder="Your Venmo/CashApp handle (optional - we'll contact you)"
-                      value={formData.venmoHandle}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-lg bg-input border border-border focus:border-primary focus:outline-none transition-colors"
-                    />
-                  )}
+                  <p className="text-muted-foreground text-sm px-1">
+                    You will be prompted to send payment after placing your order. Payment is due before your delivery date.
+                  </p>
                 </div>
               </div>
 

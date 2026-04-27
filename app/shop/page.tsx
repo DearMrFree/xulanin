@@ -8,7 +8,7 @@ import { ProductsGrid } from '@/components/products-grid'
 import { CartSidebar } from '@/components/cart-sidebar'
 import { products } from '@/lib/products'
 
-const categories = ['all', 'cookies', 'cakes', 'pudding']
+const categories = ['all', 'pudding', 'cakes']
 
 export default function ShopPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -34,9 +34,14 @@ export default function ShopPage() {
             <ArrowLeft className="w-4 h-4" />
             Back
           </Link>
-          <h1 className="text-5xl md:text-6xl font-bold mb-8">
+          <h1 className="text-5xl md:text-6xl font-bold mb-2">
             <span className="text-foreground">ORDER</span> <span className="text-primary">NOW</span>
           </h1>
+          <p className="text-muted-foreground mb-6 text-sm">
+            All items made to order — fresh for you. Call/text{' '}
+            <a href="tel:4088496090" className="text-primary font-semibold hover:underline">(408)-849-6090</a>
+            {' '}for questions.
+          </p>
 
           {/* Category Filters */}
           <div className="flex gap-3 flex-wrap">

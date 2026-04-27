@@ -1,85 +1,123 @@
+export type ProductSize = {
+  label: string
+  price: number
+  netWeight: string
+  netWeightMetric: string
+}
+
+export interface CottageLabel {
+  productName: string
+  homekitchenStatement: string
+  permitNumber: string
+  countyIssued: string
+  businessName: string
+  businessCity: string
+  businessState: string
+  businessZip: string
+  ingredients: string
+  fillingIngredients?: string
+  toppingIngredients?: string
+  allergens: string[]
+}
+
 export interface Product {
   id: string
   name: string
   description: string
-  price: number
+  sizes: ProductSize[]
   image: string
   category: string
   available: boolean
+  label: CottageLabel
+}
+
+// Shared business info
+const BUSINESS = {
+  name: 'Xubie Snacks',
+  city: 'San Jose',
+  state: 'CA',
+  zip: '95116',
+  county: 'Santa Clara County',
+  permitNumber: 'CFO-PENDING-XXXX',
 }
 
 export const products: Product[] = [
   {
-    id: 'chocolate-chip',
-    name: 'Chocolate Chip Cookies',
-    description: 'Classic homemade cookies loaded with gooey chocolate chips',
-    price: 12,
-    image: '/images/product-1.jpg',
-    category: 'cookies',
-    available: true,
-  },
-  {
     id: 'banana-pudding',
     name: 'Banana Pudding',
-    description: 'Creamy, layered banana pudding with vanilla wafers',
-    price: 8,
-    image: '/images/product-2.jpg',
+    description: 'Creamy, layered banana pudding with fresh bananas and vanilla wafers. Snacks That Smack.',
+    sizes: [
+      { label: 'Regular', price: 8, netWeight: '10 oz', netWeightMetric: '283 g' },
+      { label: 'Large',   price: 12, netWeight: '16 oz', netWeightMetric: '454 g' },
+    ],
+    image: '/images/banana-pudding.jpg',
     category: 'pudding',
     available: true,
+    label: {
+      productName: 'Banana Pudding',
+      homekitchenStatement: 'Made in a Home Kitchen',
+      permitNumber: BUSINESS.permitNumber,
+      countyIssued: BUSINESS.county,
+      businessName: BUSINESS.name,
+      businessCity: BUSINESS.city,
+      businessState: BUSINESS.state,
+      businessZip: BUSINESS.zip,
+      ingredients:
+        'Vanilla wafers (enriched flour [wheat flour, niacin, reduced iron, thiamine mononitrate, riboflavin, folic acid], sugar, vegetable oil [soybean and/or canola oil], high fructose corn syrup, leavening [sodium bicarbonate, ammonium bicarbonate], salt, soy lecithin, natural and artificial flavor), whole milk, heavy cream, sugar, egg yolks, cornstarch, pure vanilla extract, bananas, salt.',
+      allergens: ['Wheat', 'Milk', 'Eggs', 'Soy'],
+    },
   },
   {
-    id: 'chocolate-cake',
-    name: 'Chocolate Layer Cake',
-    description: 'Rich chocolate cake with chocolate frosting (feeds 6-8)',
-    price: 25,
-    image: '/images/product-3.jpg',
-    category: 'cakes',
-    available: true,
-  },
-  {
-    id: 'vanilla-cupcakes',
-    name: 'Vanilla Cupcakes',
-    description: 'Dozen vanilla cupcakes with colorful frosting (12 pack)',
-    price: 18,
-    image: '/images/product-1.jpg',
-    category: 'cakes',
-    available: true,
-  },
-  {
-    id: 'brownies',
-    name: 'Fudgy Brownies',
-    description: 'Dense and fudgy brownies - half dozen',
-    price: 14,
-    image: '/images/product-2.jpg',
-    category: 'cookies',
-    available: true,
-  },
-  {
-    id: 'carrot-cake',
-    name: 'Carrot Cake',
-    description: 'Moist carrot cake with cream cheese frosting (feeds 6-8)',
-    price: 24,
-    image: '/images/product-3.jpg',
-    category: 'cakes',
-    available: true,
-  },
-  {
-    id: 'caramel-pudding',
-    name: 'Caramel Pudding',
-    description: 'Smooth and silky caramel pudding perfection',
-    price: 8,
-    image: '/images/product-1.jpg',
+    id: 'biscoff-banana-pudding',
+    name: 'Biscoff Banana Pudding',
+    description: 'Our signature banana pudding layered with Biscoff cookies and caramel drizzle. Next level.',
+    sizes: [
+      { label: 'Regular', price: 9,  netWeight: '10 oz', netWeightMetric: '283 g' },
+      { label: 'Large',   price: 13, netWeight: '16 oz', netWeightMetric: '454 g' },
+    ],
+    image: '/images/biscoff-pudding.jpg',
     category: 'pudding',
     available: true,
+    label: {
+      productName: 'Biscoff Banana Pudding',
+      homekitchenStatement: 'Made in a Home Kitchen',
+      permitNumber: BUSINESS.permitNumber,
+      countyIssued: BUSINESS.county,
+      businessName: BUSINESS.name,
+      businessCity: BUSINESS.city,
+      businessState: BUSINESS.state,
+      businessZip: BUSINESS.zip,
+      ingredients:
+        'Biscoff cookies (wheat flour, sugar, vegetable oils [palm oil, soybean oil, rapeseed oil], brown sugar syrup, sodium bicarbonate, soy flour, salt, cinnamon), whole milk, heavy cream, sugar, egg yolks, cornstarch, pure vanilla extract, bananas, caramel sauce (sugar, butter [milk], heavy cream, salt), salt.',
+      allergens: ['Wheat', 'Milk', 'Eggs', 'Soy'],
+    },
   },
   {
-    id: 'sugar-cookies',
-    name: 'Sugar Cookies',
-    description: 'Decorative sugar cookies - half dozen',
-    price: 16,
-    image: '/images/product-2.jpg',
-    category: 'cookies',
+    id: 'xubie-cake',
+    name: 'Xubie Cake',
+    description: 'Our signature moist homemade cake with caramel glaze. The one everyone keeps coming back for.',
+    sizes: [
+      { label: 'Regular', price: 6,  netWeight: '4 oz', netWeightMetric: '113 g' },
+      { label: 'Large',   price: 14, netWeight: '12 oz', netWeightMetric: '340 g' },
+    ],
+    image: '/images/xubie-cake.jpg',
+    category: 'cakes',
     available: true,
+    label: {
+      productName: 'Xubie Cake',
+      homekitchenStatement: 'Made in a Home Kitchen',
+      permitNumber: BUSINESS.permitNumber,
+      countyIssued: BUSINESS.county,
+      businessName: BUSINESS.name,
+      businessCity: BUSINESS.city,
+      businessState: BUSINESS.state,
+      businessZip: BUSINESS.zip,
+      ingredients:
+        'All-purpose flour (enriched wheat flour [wheat flour, niacin, reduced iron, thiamine mononitrate, riboflavin, folic acid]), sugar, unsalted butter (cream [milk], natural flavoring), eggs, whole milk, baking powder (sodium acid pyrophosphate, sodium bicarbonate, corn starch, monocalcium phosphate), pure vanilla extract, salt.',
+      toppingIngredients:
+        'Caramel glaze: sugar, butter (cream [milk]), heavy cream, pure vanilla extract, salt.',
+      allergens: ['Wheat', 'Milk', 'Eggs'],
+    },
   },
 ]
 

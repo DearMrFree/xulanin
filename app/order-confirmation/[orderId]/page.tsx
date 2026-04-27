@@ -63,7 +63,8 @@ export default function OrderConfirmationPage({ params }: { params: { orderId: s
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const venmoHandle = '@xubie_snacks' // Default to the business account
+  const cashAppHandle = '$XULANIN7'
+  const phoneNumber = '(408)-849-6090'
 
   return (
     <main className="min-h-screen bg-background">
@@ -171,8 +172,12 @@ export default function OrderConfirmationPage({ params }: { params: { orderId: s
         {/* Payment Info */}
         <div className="bg-primary/10 border border-primary rounded-2xl p-8 mb-8">
           <h2 className="text-2xl font-bold mb-4">Payment Instructions</h2>
-          <p className="text-foreground mb-6">
-            Send payment to <span className="font-bold text-primary">{venmoHandle}</span>
+          <p className="text-foreground mb-4">
+            Send payment via <span className="font-bold">CashApp</span> to{' '}
+            <span className="font-bold text-primary font-mono text-lg">{cashAppHandle}</span>
+          </p>
+          <p className="text-muted-foreground text-sm mb-4">
+            Include your order number in the payment note so we can match it to your order.
           </p>
           <div className="bg-card rounded-lg p-4 mb-6">
             <p className="text-sm text-muted-foreground mb-2">Amount Due:</p>
@@ -187,7 +192,7 @@ export default function OrderConfirmationPage({ params }: { params: { orderId: s
         <div className="bg-card border border-border rounded-2xl p-8 mb-8">
           <h2 className="text-2xl font-bold mb-6">Questions or Changes?</h2>
           <p className="text-muted-foreground mb-6">
-            DM us on Instagram or text us for any questions about your order.
+            DM us on Instagram or text/call us for any questions about your order.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
@@ -196,27 +201,17 @@ export default function OrderConfirmationPage({ params }: { params: { orderId: s
               rel="noopener noreferrer"
               className="flex-1"
             >
-              <Button
-                variant="outline"
-                className="w-full"
-                size="lg"
-              >
+              <Button variant="outline" className="w-full" size="lg">
                 <MessageCircle className="w-5 h-5 mr-2" />
-                Message on Instagram
+                Instagram DM
               </Button>
             </a>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => {
-                const phone = order.customer.phone.replace(/\D/g, '')
-                window.open(`sms:${phone}`)
-              }}
-              className="flex-1"
-            >
-              <MessageCircle className="w-5 h-5 mr-2" />
-              Text
-            </Button>
+            <a href="tel:4088496090" className="flex-1">
+              <Button variant="outline" className="w-full" size="lg">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Call / Text {phoneNumber}
+              </Button>
+            </a>
           </div>
         </div>
 
