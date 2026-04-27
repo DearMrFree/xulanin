@@ -21,8 +21,8 @@ const highlights = [
   },
   {
     icon: Bot,
-    title: "AI-Backed Growth",
-    desc: "Xuliani supports ordering, discovery, and digital hospitality behind the scenes.",
+    title: "AI-Powered Tools",
+    desc: "The Xuliani AI agent supports ordering, discovery, and digital hospitality behind the scenes.",
   },
 ];
 

@@ -79,7 +79,7 @@ export function Footer() {
 
           <div>
             <h4 className="font-serif text-sm uppercase tracking-wider mb-4">
-              Powered By
+              Built With
             </h4>
             <ul className="space-y-2 text-sm text-[var(--background)]/60">
               <li>
@@ -93,15 +93,15 @@ export function Footer() {
                 </a>
               </li>
               <li>Dr. Freedom Cheteni</li>
-              <li>Devin (AI Engineer)</li>
-              <li>Xuliani (AI Agent)</li>
+              <li>Devin (Software Engineer)</li>
+              <li>The Xuliani AI Agent</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-16 pt-8 border-t border-[var(--background)]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[var(--background)]/40">
-            &copy; {new Date().getFullYear()} Xuliani LLC (DBA Xubie Snacks). All rights reserved.
+            &copy; {new Date().getFullYear()} Xubie Snacks by Nina Lux. All rights reserved.
           </p>
           <p className="text-xs text-[var(--background)]/40 flex items-center gap-1">
             Made with <Heart size={12} className="text-[var(--primary)]" /> in San Jose, CA

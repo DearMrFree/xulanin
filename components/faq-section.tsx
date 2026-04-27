@@ -18,8 +18,8 @@ export function FAQSection() {
               Got <span className="text-[var(--primary)]">Questions?</span>
             </h2>
             <p className="text-[var(--muted-foreground)] mt-4">
-              Can&apos;t find an answer? Chat with Xuliani — our AI concierge
-              in the bottom-right corner!
+              Can&apos;t find an answer? Chat with our AI concierge
+              in the bottom-right corner for instant support!
             </p>
           </div>
 

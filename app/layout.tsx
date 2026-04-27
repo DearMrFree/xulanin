@@ -41,9 +41,9 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <CartProvider>{children}</CartProvider>
         {/*
-         * Xuliani concierge — sourced from sof.ai so it updates as Nina's
-         * agent trains. The bundle injects a Shadow-DOM-isolated chat
-         * bubble into the bottom-right and POSTs to sof.ai's embed API.
+         * AI Concierge — Xuliani agent sourced from sof.ai updates as it trains.
+         * The bundle injects a Shadow-DOM-isolated chat bubble into the bottom-right
+         * and POSTs to sof.ai's embed API for customer support.
          */}
         <Script
           src="https://sof.ai/embed/xuliani.js"
