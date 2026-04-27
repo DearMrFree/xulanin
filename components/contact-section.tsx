@@ -1,35 +1,43 @@
 "use client";
 import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { Phone, Mail, MapPin, DollarSign, Send, MessageCircle } from "lucide-react";
 import { InstagramIcon } from "@/components/icons";
+import { XUBIE_DATA } from "@/lib/data";
 
 const contactInfo = [
   {
     icon: Phone,
-    label: "Call Us",
-    value: "(650) 656-0483",
+    label: "Call / Text",
+    value: XUBIE_DATA.company.phone,
     sub: "Mon-Sat, 9AM - 6PM PST",
-    href: "tel:6506560483",
+    href: `tel:${XUBIE_DATA.company.phone.replace(/\D/g, "")}`,
+  },
+  {
+    icon: MessageCircle,
+    label: "WhatsApp",
+    value: XUBIE_DATA.company.whatsappDisplay,
+    sub: "Fastest way to order",
+    href: `https://wa.me/${XUBIE_DATA.company.whatsapp}?text=${encodeURIComponent("Hi Xulanin! I'd like to place an order.")}`,
   },
   {
     icon: Mail,
     label: "Email",
-    value: "13goonies@gmail.com",
+    value: XUBIE_DATA.company.email,
     sub: "We respond within 24 hours",
-    href: "mailto:13goonies@gmail.com",
+    href: `mailto:${XUBIE_DATA.company.email}`,
+  },
+  {
+    icon: DollarSign,
+    label: "CashApp",
+    value: XUBIE_DATA.company.cashapp,
+    sub: "For payments",
+    href: "https://cash.app/$XULANIN7",
   },
   {
     icon: MapPin,
     label: "Location",
     value: "2095 Fruitdale Avenue",
     sub: "San Jose, CA 95128",
-    href: null,
-  },
-  {
-    icon: Clock,
-    label: "Local Pickup",
-    value: "Same-Day Available",
-    sub: "For Bay Area orders",
     href: null,
   },
 ];
@@ -132,6 +140,8 @@ export function ContactSection() {
                   {item.href ? (
                     <a
                       href={item.href}
+                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="text-sm font-medium text-[var(--foreground)] hover:text-[var(--primary)] transition-colors block mt-1"
                     >
                       {item.value}
@@ -148,17 +158,30 @@ export function ContactSection() {
               ))}
             </div>
 
-            <a
-              href="https://www.instagram.com/xubie_snacks"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:opacity-90 transition-opacity"
-            >
-              <InstagramIcon size={18} />
-              <span className="text-sm font-medium">
-                Follow @xubie_snacks
-              </span>
-            </a>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={`https://wa.me/${XUBIE_DATA.company.whatsapp}?text=${encodeURIComponent("Hi Xulanin! I'd like to place an order.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-5 py-3 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-colors"
+              >
+                <MessageCircle size={18} />
+                <span className="text-sm font-medium">
+                  WhatsApp Us
+                </span>
+              </a>
+              <a
+                href="https://www.instagram.com/xubie_snacks"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:opacity-90 transition-opacity"
+              >
+                <InstagramIcon size={18} />
+                <span className="text-sm font-medium">
+                  Follow @xubie_snacks
+                </span>
+              </a>
+            </div>
           </div>
 
           <div className="lg:col-span-7">
@@ -266,7 +289,7 @@ export function ContactSection() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-full hover:opacity-90 transition-opacity text-sm tracking-wide disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-xl text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
               >
                 <Send size={16} />
                 {status === "submitting" ? "Sending..." : "Send Message"}
