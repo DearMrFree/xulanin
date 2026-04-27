@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import { CartProvider } from "@/lib/cart-provider";
+import { XulaninChatbot } from "@/components/xulanin-chatbot";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -17,15 +17,15 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Xubie Snacks | Handcrafted Snacks That Spark Joy",
+  title: "Xubie Snacks | Snacks That Smack",
   description:
-    "Artisan snacks handcrafted in San Jose, CA. From signature trail mixes to wellness bites, Xubie Snacks brings joy to every occasion. Order online for Bay Area delivery.",
+    "Handcrafted Banana Pudding, Biscoff Banana Pudding, and Xubie Cake from San Jose, CA. Order via WhatsApp, DM, or our site. Bay Area pickup and delivery.",
   keywords:
-    "snacks, artisan snacks, handcrafted, San Jose, Bay Area, trail mix, healthy snacks, vegan snacks, gluten free, party snacks, corporate catering",
+    "xubie snacks, banana pudding, biscoff pudding, xubie cake, san jose snacks, bay area desserts, handcrafted treats, pop-up snacks",
   openGraph: {
-    title: "Xubie Snacks | Handcrafted Snacks That Spark Joy",
+    title: "Xubie Snacks | Snacks That Smack",
     description:
-      "Artisan snacks made with love by Nina Lux. Fresh, handcrafted, and delivered to your door in the Bay Area.",
+      "Handcrafted desserts by Nina Lux. Banana Pudding, Biscoff Banana Pudding, and Xubie Cake. Order now for Bay Area pickup and delivery.",
     type: "website",
     url: "https://xulanin.com",
   },
@@ -39,16 +39,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${playfair.variable}`}>
       <body className="font-sans antialiased">
-        <CartProvider>{children}</CartProvider>
-        {/*
-         * Xuliani concierge — sourced from sof.ai so it updates as Nina's
-         * agent trains. The bundle injects a Shadow-DOM-isolated chat
-         * bubble into the bottom-right and POSTs to sof.ai's embed API.
-         */}
-        <Script
-          src="https://sof.ai/embed/xuliani.js"
-          strategy="afterInteractive"
-        />
+        <CartProvider>
+          {children}
+          <XulaninChatbot />
+        </CartProvider>
       </body>
     </html>
   );

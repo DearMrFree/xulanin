@@ -1,7 +1,11 @@
 "use client";
 
 import { useState, useCallback, useMemo, type ReactNode } from "react";
-import { CartContext, type CartItem } from "./cart";
+import { CartContext, type CartItem, type ProductSize } from "./cart";
+
+function matchItem(a: CartItem, id: number, size: ProductSize) {
+  return a.id === id && a.size === size;
+}
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -9,10 +13,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const addItem = useCallback(
     (item: Omit<CartItem, "quantity">) => {
       setItems((prev) => {
-        const existing = prev.find((i) => i.id === item.id);
+        const existing = prev.find((i) => matchItem(i, item.id, item.size));
         if (existing) {
           return prev.map((i) =>
-            i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+            matchItem(i, item.id, item.size)
+              ? { ...i, quantity: i.quantity + 1 }
+              : i
           );
         }
         return [...prev, { ...item, quantity: 1 }];
@@ -21,19 +27,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
     []
   );
 
-  const removeItem = useCallback((id: number) => {
-    setItems((prev) => prev.filter((i) => i.id !== id));
+  const removeItem = useCallback((id: number, size: ProductSize) => {
+    setItems((prev) => prev.filter((i) => !matchItem(i, id, size)));
   }, []);
 
-  const updateQuantity = useCallback((id: number, quantity: number) => {
-    if (quantity <= 0) {
-      setItems((prev) => prev.filter((i) => i.id !== id));
-      return;
-    }
-    setItems((prev) =>
-      prev.map((i) => (i.id === id ? { ...i, quantity } : i))
-    );
-  }, []);
+  const updateQuantity = useCallback(
+    (id: number, size: ProductSize, quantity: number) => {
+      if (quantity <= 0) {
+        setItems((prev) => prev.filter((i) => !matchItem(i, id, size)));
+        return;
+      }
+      setItems((prev) =>
+        prev.map((i) => (matchItem(i, id, size) ? { ...i, quantity } : i))
+      );
+    },
+    []
+  );
 
   const clearCart = useCallback(() => setItems([]), []);
 

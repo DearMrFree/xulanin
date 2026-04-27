@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Heart } from "lucide-react";
+import { Heart, MessageCircle } from "lucide-react";
 import { InstagramIcon, TikTokIcon } from "@/components/icons";
+import { XUBIE_DATA } from "@/lib/data";
 
 export function Footer() {
   return (
@@ -33,6 +34,12 @@ export function Footer() {
               local delivery, pop-ups, and the kind of community moments people
               post before they even get home.
             </p>
+            <div className="mt-4 space-y-2 text-sm text-[var(--background)]/60">
+              <p>Phone: {XUBIE_DATA.company.phone}</p>
+              <p>WhatsApp: {XUBIE_DATA.company.whatsappDisplay}</p>
+              <p>Email: {XUBIE_DATA.company.email}</p>
+              <p>CashApp: {XUBIE_DATA.company.cashapp}</p>
+            </div>
             <div className="mt-4 flex items-center gap-4">
               <a
                 href="https://www.instagram.com/xubie_snacks"
@@ -49,6 +56,14 @@ export function Footer() {
                 className="text-[var(--background)]/60 hover:text-[var(--primary)] transition-colors"
               >
                 <TikTokIcon size={20} />
+              </a>
+              <a
+                href={`https://wa.me/${XUBIE_DATA.company.whatsapp}?text=${encodeURIComponent("Hi Xulanin!")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--background)]/60 hover:text-green-400 transition-colors"
+              >
+                <MessageCircle size={20} />
               </a>
             </div>
           </div>
@@ -94,7 +109,7 @@ export function Footer() {
               </li>
               <li>Dr. Freedom Cheteni</li>
               <li>Devin (AI Engineer)</li>
-              <li>Xuliani (AI Agent)</li>
+              <li>Xulanin (AI Concierge)</li>
             </ul>
           </div>
         </div>

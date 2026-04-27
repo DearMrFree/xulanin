@@ -2,34 +2,50 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin, MessageCircle, Truck } from "lucide-react";
+import { XUBIE_DATA } from "@/lib/data";
 
 const trustBadges = [
-  { icon: MessageCircle, text: "DM to Order" },
+  { icon: MessageCircle, text: "WhatsApp to Order" },
   { icon: Truck, text: "Pick Up / Local Delivery" },
   { icon: MapPin, text: "San Jose, CA" },
 ];
 
 const marqueeItems = [
   "Banana Pudding",
+  "Biscoff Banana Pudding",
   "Xubie Cake",
-  "Lake Merritt Pop-Up",
-  "Sweets and Treats",
-  "Snack Sundays",
+  "Snacks That Smack",
   "Bay Area Delivery",
-  "Community Booths",
+  "Community Pop-Ups",
   "Handcrafted Desserts",
+  "CashApp $XULANIN7",
 ];
 
 export function HeroSection() {
   return (
     <section id="home" className="min-h-screen relative overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-2/3 h-full bg-[var(--primary)]/5" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[var(--accent)]/10 rounded-full blur-3xl" />
-        <div className="absolute top-20 right-20 w-64 h-64 bg-[var(--primary)]/8 rounded-full blur-3xl" />
+      {/* Decorative drip effect */}
+      <div className="absolute top-0 left-0 right-0 h-24 z-10 pointer-events-none">
+        <svg
+          viewBox="0 0 1440 96"
+          className="w-full h-full"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,0 L1440,0 L1440,40 Q1380,40 1350,55 Q1320,70 1290,50 Q1200,40 1140,60 Q1080,80 1020,50 Q960,40 900,55 Q840,70 780,45 Q720,40 660,60 Q600,80 540,50 Q480,40 420,55 Q360,75 300,45 Q240,35 180,55 Q120,75 60,50 Q30,40 0,45 Z"
+            fill="var(--primary)"
+            opacity="0.9"
+          />
+        </svg>
       </div>
 
-      <div className="container mx-auto px-6 pt-32 pb-12 relative">
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-2/3 h-full bg-[var(--accent)]/5" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[var(--primary)]/8 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-20 w-64 h-64 bg-[var(--accent)]/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-6 pt-36 pb-12 relative">
         <div className="flex flex-wrap items-center gap-6 mb-12">
           {trustBadges.map((badge) => (
             <div
@@ -45,15 +61,15 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-5 space-y-8">
             <span className="inline-block text-xs tracking-widest text-[var(--primary)] uppercase bg-[var(--primary)]/10 px-4 py-2 rounded-full">
-              San Jose, CA • Pick Up + Local Delivery
+              San Jose, CA &bull; Pick Up + Local Delivery
             </span>
             <h1 className="font-serif text-5xl lg:text-7xl leading-tight text-[var(--foreground)]">
               Snacks That <span className="text-[var(--primary)]">Smack</span>
             </h1>
             <p className="text-[var(--muted-foreground)] text-lg leading-relaxed max-w-xl">
-              From Lake Merritt pop-ups to sweets-and-treats tables, Xubie Snacks
-              brings handcrafted desserts, crowd-favorite bites, and real Bay Area
-              community energy to every order.
+              Banana Pudding, Biscoff Banana Pudding, and Xubie Cake — handcrafted
+              desserts from the booth to your door. Order via WhatsApp or right
+              here on the site.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -63,33 +79,31 @@ export function HeroSection() {
                 Order Now
                 <ArrowRight size={18} />
               </Link>
-              <Link
-                href="/#instagram"
-                className="inline-flex items-center justify-center px-8 py-4 border border-[var(--foreground)]/20 text-[var(--foreground)] rounded-full hover:bg-[var(--foreground)]/5 transition-colors"
+              <a
+                href={`https://wa.me/${XUBIE_DATA.company.whatsapp}?text=${encodeURIComponent("Hi Xulanin! I'd like to order some snacks!")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors"
               >
-                See the Brand in Motion
-              </Link>
+                <MessageCircle size={18} />
+                WhatsApp Order
+              </a>
             </div>
 
             <div className="grid sm:grid-cols-3 gap-3 max-w-2xl">
-              <div className="rounded-2xl border border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-sm p-4">
-                <p className="text-2xl font-semibold text-[var(--foreground)]">29</p>
-                <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted-foreground)] mt-1">
-                  Instagram Posts
-                </p>
-              </div>
-              <div className="rounded-2xl border border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-sm p-4">
-                <p className="text-2xl font-semibold text-[var(--foreground)]">614</p>
-                <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted-foreground)] mt-1">
-                  Followers
-                </p>
-              </div>
-              <div className="rounded-2xl border border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-sm p-4">
-                <p className="text-2xl font-semibold text-[var(--foreground)]">Local</p>
-                <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted-foreground)] mt-1">
-                  Delivery + Pickup
-                </p>
-              </div>
+              {XUBIE_DATA.products.map((product) => (
+                <div
+                  key={product.id}
+                  className="rounded-2xl border border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-sm p-4 hover:border-[var(--primary)]/30 transition-colors"
+                >
+                  <p className="text-lg font-semibold text-[var(--foreground)]">
+                    {product.name}
+                  </p>
+                  <p className="text-xs text-[var(--primary)] font-medium mt-1">
+                    Reg ${product.priceReg} | Lrg ${product.priceLrg}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -104,71 +118,44 @@ export function HeroSection() {
                     className="object-cover"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
-                  <div className="absolute left-6 right-6 bottom-6 text-white">
-                    <p className="text-xs uppercase tracking-[0.3em] text-white/80">
-                      Real Bay Area Pop-Up Energy
-                    </p>
-                    <p className="font-serif text-2xl mt-2">
-                      Sweets, treats, merch, QR codes, and community all in one frame.
-                    </p>
-                  </div>
                 </div>
-
-                <div className="grid gap-4">
-                  <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden border border-[var(--border)] bg-[var(--card)] shadow-xl">
+                <div className="space-y-4">
+                  <div className="relative aspect-square rounded-[2rem] overflow-hidden shadow-xl border border-white/40">
                     <Image
-                      src="/branding/instagram-profile.png"
-                      alt="Xubie Snacks Instagram profile showing brand bio and local delivery positioning"
-                      fill
-                      className="object-cover object-top"
-                    />
-                  </div>
-                  <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden border border-[var(--border)] bg-[var(--card)] shadow-xl">
-                    <Image
-                      src="/branding/community-side.jpeg"
-                      alt="Xubie Snacks event setup with menu board, desserts, and branded banner"
+                      src="/branding/community-closeup.jpeg"
+                      alt="Banana Pudding Cup close-up with layered cream and wafers"
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                    <div className="absolute left-5 right-5 bottom-5 text-white">
-                      <p className="text-sm font-medium">Menu boards, spin wheel, and booth theatre</p>
-                    </div>
+                  </div>
+                  <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl border border-white/40">
+                    <Image
+                      src="/branding/community-hero.jpeg"
+                      alt="Biscoff Banana Pudding with caramel drizzle"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                 </div>
-              </div>
-
-              <div className="absolute -bottom-5 left-4 right-4 md:left-auto md:right-6 md:w-72 bg-[var(--background)]/95 backdrop-blur-sm px-6 py-4 rounded-3xl border border-[var(--border)] shadow-lg">
-                <p className="text-xs uppercase tracking-[0.22em] text-[var(--muted-foreground)] mb-2">
-                  Brand Promise
-                </p>
-                <p className="text-sm text-[var(--foreground)] leading-relaxed">
-                  DM to order, pick up locally, or book a pop-up table that feels
-                  alive before the first bite even lands.
-                </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-24 overflow-hidden relative">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[var(--background)] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[var(--background)] to-transparent z-10" />
-          <div className="flex animate-marquee">
-            {[...Array(3)].map((_, setIndex) => (
-              <div key={setIndex} className="flex shrink-0">
-                {marqueeItems.map((item, i) => (
-                  <span
-                    key={`${setIndex}-${i}`}
-                    className="px-8 py-3 text-sm text-[var(--muted-foreground)] whitespace-nowrap"
-                  >
-                    {item}
-                    <span className="mx-8 text-[var(--primary)]">/</span>
-                  </span>
-                ))}
-              </div>
-            ))}
+        {/* Marquee */}
+        <div className="mt-16 -mx-6 overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap">
+            {[...marqueeItems, ...marqueeItems, ...marqueeItems].map(
+              (item, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-4 px-8 text-lg font-serif text-[var(--muted-foreground)]/40"
+                >
+                  {item}
+                  <span className="text-[var(--primary)]">&bull;</span>
+                </span>
+              )
+            )}
           </div>
         </div>
       </div>

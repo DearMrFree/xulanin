@@ -5,8 +5,11 @@ export const XUBIE_DATA = {
     dba: "Xubie Snacks",
     founded: 2026,
     location: "2095 Fruitdale Avenue, San Jose, CA 95128",
-    phone: "(650) 656-0483",
-    email: "13goonies@gmail.com",
+    phone: "(408) 849-6090",
+    whatsapp: "14086796016",
+    whatsappDisplay: "1 (408) 679-6016",
+    cashapp: "$XULANIN7",
+    email: "xubiesnacks@yahoo.com",
     website: "https://xulanin.com",
     instagram: "https://www.instagram.com/xubie_snacks",
     tiktok: {
@@ -43,158 +46,36 @@ export const XUBIE_DATA = {
     school: "School of AI (sof.ai)",
     agent: "Xuliani",
   },
-  categories: [
-    {
-      id: "signature",
-      name: "Signature Drops",
-      description: "The items people recognize from the booth first",
-      emoji: "star",
-    },
-    {
-      id: "sweet",
-      name: "Sweets & Treats",
-      description: "Dessert-forward favorites with serious repeat energy",
-      emoji: "candy",
-    },
-    {
-      id: "savory",
-      name: "Savory Crunch",
-      description: "Salty, spicy, snackable counterpoints to the sweets",
-      emoji: "fire",
-    },
-    {
-      id: "wellness",
-      name: "Feel-Good Bites",
-      description: "Lighter options that still feel unmistakably Xubie",
-      emoji: "leaf",
-    },
-    {
-      id: "seasonal",
-      name: "Pop-Up Specials",
-      description: "Limited runs inspired by events, weekends, and crowd favorites",
-      emoji: "sparkles",
-    },
-  ],
   products: [
     {
       id: 1,
-      name: "Banana Pudding Cup",
-      category: "signature",
-      price: 8,
+      name: "Banana Pudding",
       description:
         "Creamy, layered, and instantly recognizable from the booth. The cup that keeps showing up in reaction videos and repeat orders.",
+      priceReg: 8,
+      priceLrg: 12,
       tags: ["bestseller", "crowd-favorite"],
       image: "/branding/community-closeup.jpeg",
     },
     {
       id: 2,
-      name: "Xubie Cake Slice",
-      category: "signature",
-      price: 6,
+      name: "Biscoff Banana Pudding",
       description:
-        "The namesake dessert with full brand energy — soft, sweet, and built to make first-time tasters believers.",
-      tags: ["bestseller", "signature"],
-      image: "/branding/community-side.jpeg",
+        "The fan-favorite upgrade — classic banana pudding layered with Biscoff cookie crumble and caramel drizzle for an irresistible twist.",
+      priceReg: 9,
+      priceLrg: 13,
+      tags: ["bestseller", "new"],
+      image: "/branding/community-hero.jpeg",
     },
     {
       id: 3,
-      name: "Peach Cobbler Jar",
-      category: "sweet",
-      price: 9.5,
+      name: "Xubie Cake",
       description:
-        "Warm-spiced peaches layered into a grab-and-go dessert jar that feels like comfort food at pop-up speed.",
-      tags: ["new"],
-      image: "/branding/community-smile.jpeg",
-    },
-    {
-      id: 4,
-      name: "Cookies & Cream Pudding Cup",
-      category: "sweet",
-      price: 8.5,
-      description:
-        "A chilled dessert cup with creamy texture, cookie crunch, and the kind of sweetness that photographs beautifully.",
-      tags: ["customer-loved"],
-      image: "/branding/community-hero.jpeg",
-    },
-    {
-      id: 5,
-      name: "Hot Honey Plantain Crunch",
-      category: "savory",
-      price: 7,
-      description:
-        "Sweet heat and a crisp finish — the perfect snack-table balance when the dessert cups are selling out fast.",
-      tags: ["spicy", "gluten-free"],
+        "The namesake dessert with full brand energy — soft, sweet, and built to make first-time tasters believers.",
+      priceReg: 6,
+      priceLrg: 14,
+      tags: ["signature"],
       image: "/branding/community-side.jpeg",
-    },
-    {
-      id: 6,
-      name: "Chili Lime Party Mix",
-      category: "savory",
-      price: 7.5,
-      description:
-        "A tangy, salty mix built for sharing at events, creative sessions, and late-night Bay Area linkups.",
-      tags: ["gluten-free"],
-      image: "/branding/community-closeup.jpeg",
-    },
-    {
-      id: 7,
-      name: "Coconut Date Energy Bites",
-      category: "wellness",
-      price: 9,
-      description:
-        "Naturally sweet bites with a softer energy profile for customers who want the feel-good side of the brand.",
-      tags: ["vegan", "gluten-free"],
-      image: "/branding/community-smile.jpeg",
-    },
-    {
-      id: 8,
-      name: "Citrus Ginger Fruit Cup",
-      category: "wellness",
-      price: 8,
-      description:
-        "Bright, fresh, and clean — a cooler counterpoint to richer desserts without losing the handcrafted feel.",
-      tags: ["vegan"],
-      image: "/branding/community-hero.jpeg",
-    },
-    {
-      id: 9,
-      name: "Lake Merritt Sunday Box",
-      category: "seasonal",
-      price: 18,
-      description:
-        "A weekend-only combo inspired by the booth moments and reel captions that helped the brand catch fire.",
-      tags: ["seasonal", "limited"],
-      image: "/branding/instagram-grid.png",
-    },
-    {
-      id: 10,
-      name: "Vendor Table Treat Tray",
-      category: "seasonal",
-      price: 28,
-      description:
-        "Designed for gatherings, birthdays, and community tables that want the full Xubie visual spread.",
-      tags: ["seasonal", "preorder"],
-      image: "/branding/community-side.jpeg",
-    },
-    {
-      id: 11,
-      name: "Mini Dessert Flight",
-      category: "sweet",
-      price: 14,
-      description:
-        "A tasting set for anyone deciding between pudding, cake, and whatever else is moving at the booth that day.",
-      tags: ["new"],
-      image: "/branding/community-closeup.jpeg",
-    },
-    {
-      id: 12,
-      name: "Celebration Crowd Pack",
-      category: "signature",
-      price: 32,
-      description:
-        "A larger-format order for creators, families, and event hosts who want the Xubie table to feel instantly stocked.",
-      tags: ["custom"],
-      image: "/branding/community-hero.jpeg",
     },
   ],
   testimonials: [
@@ -202,63 +83,71 @@ export const XUBIE_DATA = {
       name: "Lake Merritt customer",
       text: "We came for one cup and left talking about Xubie the whole way home. The booth felt alive and the banana pudding absolutely delivered.",
       rating: 5,
-      product: "Banana Pudding Cup",
+      product: "Banana Pudding",
     },
     {
       name: "Snack Sundays regular",
       text: "Xubie Cake is the kind of dessert you try once and immediately start telling other people about. The branding pulled us in and the flavor closed the deal.",
       rating: 5,
-      product: "Xubie Cake Slice",
+      product: "Xubie Cake",
     },
     {
       name: "Bay Area pop-up guest",
       text: "The whole table looked premium — merch, menu board, samples, QR code, all of it. It felt like a real brand, not a temporary booth.",
       rating: 5,
-      product: "Vendor Table Treat Tray",
+      product: "Biscoff Banana Pudding",
     },
     {
       name: "Parent at the booth",
-      text: "You know it’s good when the kids like it. We tried the desserts first and ended up following the page before we even left.",
+      text: "You know it's good when the kids like it. We tried the desserts first and ended up following the page before we even left.",
       rating: 5,
-      product: "Mini Dessert Flight",
+      product: "Banana Pudding",
     },
     {
       name: "Event host",
       text: "Xubie brought energy, not just food. The sweets-and-treats setup made our event feel warmer and way more memorable.",
       rating: 5,
-      product: "Celebration Crowd Pack",
+      product: "Xubie Cake",
     },
     {
       name: "Instagram follower",
       text: "The reels convinced me to order and the real thing was even better. You can feel that this brand is being built with intention.",
       rating: 5,
-      product: "Lake Merritt Sunday Box",
+      product: "Biscoff Banana Pudding",
     },
   ],
   faqs: [
     {
       q: "How do I order?",
-      a: "You can order directly through the site, DM @xubie_snacks on Instagram, or scan the booth QR code when Xubie is live at a pop-up. If you already know what you want, DM is the fastest path.",
+      a: "You can order directly through the site, chat with Xulanin (our AI concierge), send a WhatsApp message to 1 (408) 679-6016, or DM @xubie_snacks on Instagram. If you already know what you want, WhatsApp is the fastest path.",
     },
     {
       q: "Do you offer pickup or delivery?",
-      a: "Yes. Xubie currently focuses on San Jose pickup and Bay Area local delivery. Same-day options may be available depending on the menu and event schedule.",
+      a: "Yes! Pickup is always free from our San Jose location (15–30 min). We also deliver across the Bay Area: South Bay ($3.99), Peninsula ($5.99), East Bay ($7.99), and SF/North Bay ($9.99). Estimated delivery times vary by zone.",
     },
     {
-      q: "What should I try first?",
-      a: "Start with the Banana Pudding Cup or the Xubie Cake Slice. Those are the clearest expressions of the brand and the easiest way to understand why people keep posting their reactions.",
+      q: "What fees are there?",
+      a: "We keep it transparent! There's a 5% service fee (capped at $5), a $2 small order fee on orders under $15, and CA sales tax (9.375%). Delivery fees depend on your zone. Pickup is always free. Tips are optional but appreciated!",
+    },
+    {
+      q: "What sizes are available?",
+      a: "All items come in Regular and Large sizes. Regular is perfect for one person, while Large is great for sharing or when you know you want more.",
+    },
+    {
+      q: "How do I pay?",
+      a: "We accept CashApp ($XULANIN7), Zelle, and cash at pop-ups. Payment details are confirmed when you place your order via WhatsApp or the site.",
     },
     {
       q: "Do you cater events or pop-ups?",
       a: "Absolutely. Xubie can prepare dessert trays, tasting tables, and custom event spreads for birthdays, community events, creator gatherings, and brand activations.",
     },
     {
-      q: "What is Xuliani?",
-      a: "Xuliani is the AI concierge behind the brand. It helps answer menu questions, guide orders, support customers, and keep the digital experience feeling as responsive as the real booth.",
+      q: "What is Xulanin?",
+      a: "Xulanin is the AI concierge behind the brand. It helps answer menu questions, guide orders, support customers, and keep the digital experience feeling as responsive as the real booth.",
     },
     {
       q: "Can I preorder for a specific date?",
-      a: "Yes. Preorders are ideal for larger trays, pop-up pickup, and custom event requests. Use the contact form or DM with your preferred date, quantities, and pickup window.",
+      a: "Yes. Preorders are ideal for larger orders, pop-up pickup, and custom event requests. Message us via WhatsApp or the contact form with your preferred date and quantities.",
     },
     {
       q: "Who is behind Xubie Snacks?",
@@ -270,13 +159,13 @@ export const XUBIE_DATA = {
       step: 1,
       title: "Pick Your Favorites",
       description:
-        "Browse the live menu and choose the desserts, snackables, or event-ready trays that fit your mood.",
+        "Browse our three signature treats — Banana Pudding, Biscoff Banana Pudding, and Xubie Cake — in Regular or Large.",
     },
     {
       step: 2,
-      title: "Send the Order",
+      title: "Send Your Order",
       description:
-        "Checkout on the site or DM @xubie_snacks for quick custom requests, preorder questions, and event needs.",
+        "Chat with Xulanin, message us on WhatsApp at 1 (408) 679-6016, or DM @xubie_snacks on Instagram.",
     },
     {
       step: 3,
@@ -288,7 +177,7 @@ export const XUBIE_DATA = {
       step: 4,
       title: "Pick Up or Get It Delivered",
       description:
-        "Grab it in San Jose, arrange local delivery, or catch Xubie live at the next Bay Area pop-up.",
+        "Grab it in San Jose, arrange local delivery, or catch Xubie live at the next Bay Area pop-up. Pay via CashApp ($XULANIN7).",
     },
   ],
 };
