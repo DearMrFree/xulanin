@@ -50,9 +50,7 @@ export function XulaninChatbot() {
     setMessages((prev) => [...prev, { role: "user", text }]);
   }
 
-  function handleOptionClick(option: string) {
-    addUserMessage(option);
-
+  function processOption(option: string) {
     if (option === "View Menu") {
       const menuText = products
         .map(
@@ -169,6 +167,11 @@ export function XulaninChatbot() {
     }
   }
 
+  function handleOptionClick(option: string) {
+    addUserMessage(option);
+    processOption(option);
+  }
+
   function handleSend() {
     const text = inputValue.trim();
     if (!text) return;
@@ -177,19 +180,19 @@ export function XulaninChatbot() {
 
     const lower = text.toLowerCase();
     if (lower.includes("menu") || lower.includes("product") || lower.includes("what do you")) {
-      handleOptionClick("View Menu");
+      processOption("View Menu");
     } else if (lower.includes("order") || lower.includes("buy") || lower.includes("want")) {
-      handleOptionClick("Place an Order");
+      processOption("Place an Order");
     } else if (lower.includes("deliver") || lower.includes("pickup") || lower.includes("pick up")) {
-      handleOptionClick("Do you deliver?");
+      processOption("Do you deliver?");
     } else if (lower.includes("pay") || lower.includes("cash") || lower.includes("zelle")) {
-      handleOptionClick("How do I pay?");
+      processOption("How do I pay?");
     } else if (lower.includes("cater") || lower.includes("event") || lower.includes("party")) {
-      handleOptionClick("Do you cater events?");
+      processOption("Do you cater events?");
     } else if (lower.includes("contact") || lower.includes("phone") || lower.includes("human") || lower.includes("talk")) {
-      handleOptionClick("Contact Us");
+      processOption("Contact Us");
     } else if (lower.includes("size")) {
-      handleOptionClick("What sizes are available?");
+      processOption("What sizes are available?");
     } else {
       const waUrl = buildWhatsAppUrl(`Hi Xulanin! ${text}`);
       addBotMessage(
