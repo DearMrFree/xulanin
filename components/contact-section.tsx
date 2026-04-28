@@ -317,10 +317,11 @@ export function ContactSection() {
                     </div>
                     <div>
                       <label className="text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-2">
-                        Inquiry Type
+                        Inquiry Type *
                       </label>
                       <select
                         name="inquiryType"
+                        required
                         value={formState.inquiryType}
                         onChange={handleChange}
                         className="w-full px-4 py-3 bg-[var(--background)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
