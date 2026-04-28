@@ -24,21 +24,6 @@ const marqueeItems = [
 export function HeroSection() {
   return (
     <section id="home" className="min-h-screen relative overflow-hidden">
-      {/* Decorative drip effect */}
-      <div className="absolute top-0 left-0 right-0 h-24 z-10 pointer-events-none">
-        <svg
-          viewBox="0 0 1440 96"
-          className="w-full h-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,0 L1440,0 L1440,40 Q1380,40 1350,55 Q1320,70 1290,50 Q1200,40 1140,60 Q1080,80 1020,50 Q960,40 900,55 Q840,70 780,45 Q720,40 660,60 Q600,80 540,50 Q480,40 420,55 Q360,75 300,45 Q240,35 180,55 Q120,75 60,50 Q30,40 0,45 Z"
-            fill="var(--primary)"
-            opacity="0.9"
-          />
-        </svg>
-      </div>
-
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-2/3 h-full bg-[var(--accent)]/5" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[var(--primary)]/8 rounded-full blur-3xl" />
