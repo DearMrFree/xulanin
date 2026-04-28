@@ -116,12 +116,12 @@ export function XulaninChatbot() {
         "Hi Xulanin! I have a question about Xubie Snacks."
       );
       addBotMessage(
-        `You can reach us at:\n\nPhone: ${XUBIE_DATA.company.phone}\nWhatsApp: ${XUBIE_DATA.company.whatsappDisplay}\nEmail: ${XUBIE_DATA.company.email}\nCashApp: ${XUBIE_DATA.company.cashapp}\n\n[Message us on WhatsApp](${waUrl})`,
+        `You can reach us at:\n\nWhatsApp: ${XUBIE_DATA.company.whatsappDisplay}\nEmail: ${XUBIE_DATA.company.email}\n\n💰 Payment: CashApp ${XUBIE_DATA.company.cashapp} or Zelle ${XUBIE_DATA.company.zelle}\n\n[Message us on WhatsApp](${waUrl})`,
         ["View Menu", "Place an Order"]
       );
     } else if (option === "How do I pay?") {
       addBotMessage(
-        `We accept CashApp (${XUBIE_DATA.company.cashapp}), Zelle, and cash at pop-ups!`,
+        `We accept:\n\n**CashApp** — ${XUBIE_DATA.company.cashapp}\n**Zelle** — ${XUBIE_DATA.company.zelle}\n**Cash** — at pop-ups\n\nDebit/credit cards and Apple Pay coming soon!`,
         ["Place an Order", "Ask a Question"]
       );
     } else if (option === "Do you deliver?") {
