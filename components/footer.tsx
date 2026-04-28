@@ -13,7 +13,7 @@ export function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-white/10">
                 <Image
-                  src="/branding/xubie-logo.png"
+                  src="/branding/xubie-logo-new.jpeg"
                   alt="Xubie Snacks logo"
                   fill
                   className="object-cover"
@@ -35,10 +35,10 @@ export function Footer() {
               post before they even get home.
             </p>
             <div className="mt-4 space-y-2 text-sm text-[var(--background)]/60">
-              <p>Phone: {XUBIE_DATA.company.phone}</p>
               <p>WhatsApp: {XUBIE_DATA.company.whatsappDisplay}</p>
               <p>Email: {XUBIE_DATA.company.email}</p>
               <p>CashApp: {XUBIE_DATA.company.cashapp}</p>
+              <p>Zelle: {XUBIE_DATA.company.zelle}</p>
             </div>
             <div className="mt-4 flex items-center gap-4">
               <a

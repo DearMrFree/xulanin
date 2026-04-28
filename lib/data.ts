@@ -5,7 +5,7 @@ export const XUBIE_DATA = {
     dba: "Xubie Snacks",
     founded: 2026,
     location: "2095 Fruitdale Avenue, San Jose, CA 95128",
-    phone: "(408) 849-6090",
+    zelle: "(408) 849-6090",
     whatsapp: "14086796016",
     whatsappDisplay: "1 (408) 679-6016",
     cashapp: "$XULANIN7",
