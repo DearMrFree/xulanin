@@ -2,6 +2,12 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, ShoppingBag } from "lucide-react";
 import { XUBIE_DATA } from "@/lib/data";
+import {
+  DELIVERY_ZONES,
+  calculateFees,
+  formatEstimate,
+  type OrderType,
+} from "@/lib/delivery";
 
 type MessageRole = "bot" | "user";
 
@@ -14,6 +20,8 @@ interface ChatMessage {
 const WHATSAPP_URL = `https://wa.me/${XUBIE_DATA.company.whatsapp}`;
 
 const products = XUBIE_DATA.products;
+
+const deliveryZones = DELIVERY_ZONES.filter((z) => z.id !== "pickup");
 
 function buildWhatsAppUrl(text: string) {
   return `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
@@ -30,11 +38,23 @@ export function XulaninChatbot() {
   const [messages, setMessages] = useState<ChatMessage[]>([GREETING]);
   const [inputValue, setInputValue] = useState("");
   const [orderState, setOrderState] = useState<{
-    step: "idle" | "product" | "size" | "quantity" | "confirm";
+    step:
+      | "idle"
+      | "product"
+      | "size"
+      | "quantity"
+      | "confirm"
+      | "orderType"
+      | "zone"
+      | "address"
+      | "review";
     productId?: number;
     size?: string;
     quantity?: number;
     items: Array<{ name: string; size: string; price: number; qty: number }>;
+    orderType?: OrderType;
+    zoneId?: string;
+    address?: string;
   }>({ step: "idle", items: [] });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -48,6 +68,17 @@ export function XulaninChatbot() {
 
   function addUserMessage(text: string) {
     setMessages((prev) => [...prev, { role: "user", text }]);
+  }
+
+  function getOrderSummary(
+    items: typeof orderState.items,
+    oType?: OrderType,
+    zId?: string
+  ) {
+    const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
+    const zone = DELIVERY_ZONES.find((z) => z.id === (zId ?? "pickup")) ?? null;
+    const fees = calculateFees(subtotal, oType ?? "pickup", zone, 0);
+    return { subtotal, zone, fees };
   }
 
   function processOption(option: string) {
@@ -113,16 +144,26 @@ export function XulaninChatbot() {
         "Absolutely! We do dessert trays, tasting tables, and custom event spreads. Message us to discuss your event!",
         ["Contact Us", "Place an Order"]
       );
-    } else if (products.some((p) => p.name === option) && orderState.step === "product") {
+    } else if (
+      products.some((p) => p.name === option) &&
+      orderState.step === "product"
+    ) {
       const product = products.find((p) => p.name === option);
       if (product) {
-        setOrderState((prev) => ({ ...prev, step: "size", productId: product.id }));
+        setOrderState((prev) => ({
+          ...prev,
+          step: "size",
+          productId: product.id,
+        }));
         addBotMessage(
           `Great choice! What size ${product.name}?\n\nRegular — $${product.priceReg}\nLarge — $${product.priceLrg}`,
           ["Regular", "Large"]
         );
       }
-    } else if ((option === "Regular" || option === "Large") && orderState.step === "size") {
+    } else if (
+      (option === "Regular" || option === "Large") &&
+      orderState.step === "size"
+    ) {
       const size = option === "Regular" ? "reg" : "lrg";
       setOrderState((prev) => ({ ...prev, step: "quantity", size }));
       addBotMessage("How many would you like?", ["1", "2", "3", "4", "5"]);
@@ -130,32 +171,148 @@ export function XulaninChatbot() {
       const qty = parseInt(option, 10);
       const product = products.find((p) => p.id === orderState.productId);
       if (product) {
-        const price = orderState.size === "lrg" ? product.priceLrg : product.priceReg;
+        const price =
+          orderState.size === "lrg" ? product.priceLrg : product.priceReg;
         const sizeLabel = orderState.size === "lrg" ? "Large" : "Regular";
         const newItem = { name: product.name, size: sizeLabel, price, qty };
         const updatedItems = [...orderState.items, newItem];
         setOrderState({ step: "confirm", items: updatedItems });
 
         const summary = updatedItems
-          .map((i) => `${i.qty}x ${i.name} (${i.size}) — $${(i.price * i.qty).toFixed(2)}`)
+          .map(
+            (i) =>
+              `${i.qty}x ${i.name} (${i.size}) — $${(i.price * i.qty).toFixed(2)}`
+          )
           .join("\n");
-        const itemTotal = updatedItems.reduce((s, i) => s + i.price * i.qty, 0);
+        const itemTotal = updatedItems.reduce(
+          (s, i) => s + i.price * i.qty,
+          0
+        );
 
         addBotMessage(
-          `Your order so far:\n\n${summary}\n\nTotal: $${itemTotal.toFixed(2)}\n\nWhat would you like to do?`,
-          ["Send Order via WhatsApp", "Add Another Item", "Start Over"]
+          `Your order so far:\n\n${summary}\n\nSubtotal: $${itemTotal.toFixed(2)}\n\nWhat would you like to do?`,
+          ["Checkout", "Add Another Item", "Start Over"]
         );
       }
-    } else if (option === "Send Order via WhatsApp") {
-      const summary = orderState.items
-        .map((i) => `${i.qty}x ${i.name} (${i.size}) — $${(i.price * i.qty).toFixed(2)}`)
+    } else if (option === "Checkout" && orderState.step === "confirm") {
+      setOrderState((prev) => ({ ...prev, step: "orderType" }));
+      addBotMessage(
+        "How would you like to receive your order?",
+        ["Pickup (FREE)", "Delivery"]
+      );
+    } else if (option === "Pickup (FREE)" && orderState.step === "orderType") {
+      setOrderState((prev) => ({
+        ...prev,
+        step: "review",
+        orderType: "pickup",
+        zoneId: "pickup",
+      }));
+      const { fees } = getOrderSummary(orderState.items, "pickup", "pickup");
+      const itemSummary = orderState.items
+        .map(
+          (i) =>
+            `${i.qty}x ${i.name} (${i.size}) — $${(i.price * i.qty).toFixed(2)}`
+        )
         .join("\n");
-      const itemTotal = orderState.items.reduce((s, i) => s + i.price * i.qty, 0);
-      const waText = `Hi Xulanin! I'd like to order:\n\n${summary}\n\nTotal: $${itemTotal.toFixed(2)}\n\nPlease let me know pickup/delivery details!`;
+      addBotMessage(
+        `**Order Summary — Pickup**\n\n${itemSummary}\n\nSubtotal: $${fees.subtotal.toFixed(2)}\nDelivery: FREE\nService Fee: $${fees.serviceFee.toFixed(2)}${fees.smallOrderFee > 0 ? `\nSmall Order Fee: $${fees.smallOrderFee.toFixed(2)}` : ""}\nTax: $${fees.tax.toFixed(2)}\n**Total: $${fees.total.toFixed(2)}**\n\nPickup at: 2095 Fruitdale Ave, San Jose\nEstimated: 15–30 min`,
+        ["Send Order via WhatsApp", "Change to Delivery", "Start Over"]
+      );
+    } else if (option === "Delivery" && orderState.step === "orderType") {
+      setOrderState((prev) => ({ ...prev, step: "zone" }));
+      const zoneList = deliveryZones
+        .map(
+          (z) =>
+            `**${z.name}** — $${z.fee.toFixed(2)} (${formatEstimate(z)})`
+        )
+        .join("\n");
+      addBotMessage(
+        `Which delivery zone are you in?\n\n${zoneList}`,
+        deliveryZones.map((z) => z.name)
+      );
+    } else if (
+      deliveryZones.some((z) => z.name === option) &&
+      orderState.step === "zone"
+    ) {
+      const zone = deliveryZones.find((z) => z.name === option);
+      if (zone) {
+        setOrderState((prev) => ({
+          ...prev,
+          step: "address",
+          zoneId: zone.id,
+          orderType: "delivery",
+        }));
+        addBotMessage(
+          `Delivery to **${zone.name}** — $${zone.fee.toFixed(2)} fee, ${formatEstimate(zone)}${zone.minimumOrder > 0 ? `\nMinimum order: $${zone.minimumOrder}` : ""}\n\nPlease type your delivery address:`
+        );
+      }
+    } else if (orderState.step === "address" && option.length > 5) {
+      setOrderState((prev) => ({ ...prev, step: "review", address: option }));
+      const { fees, zone } = getOrderSummary(
+        orderState.items,
+        "delivery",
+        orderState.zoneId
+      );
+      const itemSummary = orderState.items
+        .map(
+          (i) =>
+            `${i.qty}x ${i.name} (${i.size}) — $${(i.price * i.qty).toFixed(2)}`
+        )
+        .join("\n");
+      const zoneName = zone?.name ?? "Delivery";
+      addBotMessage(
+        `**Order Summary — Delivery to ${zoneName}**\n\n${itemSummary}\n\nSubtotal: $${fees.subtotal.toFixed(2)}\nDelivery Fee: $${fees.deliveryFee.toFixed(2)}${fees.smallOrderFee > 0 ? `\nSmall Order Fee: $${fees.smallOrderFee.toFixed(2)}` : ""}\nService Fee: $${fees.serviceFee.toFixed(2)}\nTax: $${fees.tax.toFixed(2)}\n**Total: $${fees.total.toFixed(2)}**\n\nDelivering to: ${option}\nEstimated: ${zone ? formatEstimate(zone) : "TBD"}`,
+        ["Send Order via WhatsApp", "Change to Pickup", "Start Over"]
+      );
+    } else if (option === "Change to Delivery") {
+      setOrderState((prev) => ({ ...prev, step: "zone", orderType: undefined, zoneId: undefined, address: undefined }));
+      const zoneList = deliveryZones
+        .map(
+          (z) =>
+            `**${z.name}** — $${z.fee.toFixed(2)} (${formatEstimate(z)})`
+        )
+        .join("\n");
+      addBotMessage(
+        `Which delivery zone are you in?\n\n${zoneList}`,
+        deliveryZones.map((z) => z.name)
+      );
+    } else if (option === "Change to Pickup") {
+      setOrderState((prev) => ({
+        ...prev,
+        step: "review",
+        orderType: "pickup",
+        zoneId: "pickup",
+        address: undefined,
+      }));
+      const { fees } = getOrderSummary(orderState.items, "pickup", "pickup");
+      const itemSummary = orderState.items
+        .map(
+          (i) =>
+            `${i.qty}x ${i.name} (${i.size}) — $${(i.price * i.qty).toFixed(2)}`
+        )
+        .join("\n");
+      addBotMessage(
+        `**Order Summary — Pickup**\n\n${itemSummary}\n\nSubtotal: $${fees.subtotal.toFixed(2)}\nDelivery: FREE\nService Fee: $${fees.serviceFee.toFixed(2)}${fees.smallOrderFee > 0 ? `\nSmall Order Fee: $${fees.smallOrderFee.toFixed(2)}` : ""}\nTax: $${fees.tax.toFixed(2)}\n**Total: $${fees.total.toFixed(2)}**\n\nPickup at: 2095 Fruitdale Ave, San Jose\nEstimated: 15–30 min`,
+        ["Send Order via WhatsApp", "Change to Delivery", "Start Over"]
+      );
+    } else if (option === "Send Order via WhatsApp") {
+      const oType = orderState.orderType ?? "pickup";
+      const { fees, zone } = getOrderSummary(
+        orderState.items,
+        oType,
+        orderState.zoneId
+      );
+      const summary = orderState.items
+        .map(
+          (i) =>
+            `${i.qty}x ${i.name} (${i.size}) — $${(i.price * i.qty).toFixed(2)}`
+        )
+        .join("\n");
+      const waText = `Hi Xulanin! I'd like to order:\n\n${summary}\n\nSubtotal: $${fees.subtotal.toFixed(2)}\nOrder type: ${oType === "pickup" ? "Pickup" : `Delivery — ${zone?.name ?? ""}`}${oType === "delivery" ? `\nDelivery Fee: $${fees.deliveryFee.toFixed(2)}` : ""}\nService Fee: $${fees.serviceFee.toFixed(2)}${fees.smallOrderFee > 0 ? `\nSmall Order Fee: $${fees.smallOrderFee.toFixed(2)}` : ""}\nTax: $${fees.tax.toFixed(2)}\nTotal: $${fees.total.toFixed(2)}${orderState.address ? `\nAddress: ${orderState.address}` : ""}\n\nPlease confirm!`;
       const waUrl = buildWhatsAppUrl(waText);
       window.open(waUrl, "_blank");
       addBotMessage(
-        `Order sent to WhatsApp! We'll confirm your order shortly.\n\nPay via CashApp: ${XUBIE_DATA.company.cashapp}\n\nAnything else?`,
+        `Order sent to WhatsApp! We'll confirm shortly.\n\nPay via CashApp: ${XUBIE_DATA.company.cashapp}\n\nAnything else?`,
         ["Place an Order", "View Menu", "Contact Us"]
       );
       setOrderState({ step: "idle", items: [] });
@@ -184,23 +341,61 @@ export function XulaninChatbot() {
     setInputValue("");
     addUserMessage(text);
 
+    if (orderState.step === "address") {
+      processOption(text);
+      return;
+    }
+
     const lower = text.toLowerCase();
-    if (lower.includes("menu") || lower.includes("product") || lower.includes("what do you")) {
+    if (
+      lower.includes("menu") ||
+      lower.includes("product") ||
+      lower.includes("what do you")
+    ) {
       processOption("View Menu");
-    } else if (lower.includes("order") || lower.includes("buy") || lower.includes("want")) {
+    } else if (
+      lower.includes("order") ||
+      lower.includes("buy") ||
+      lower.includes("want")
+    ) {
       processOption("Place an Order");
-    } else if (lower.includes("deliver") || lower.includes("pickup") || lower.includes("pick up")) {
+    } else if (
+      lower.includes("deliver") ||
+      lower.includes("pickup") ||
+      lower.includes("pick up")
+    ) {
       processOption("Do you deliver?");
-    } else if (lower.includes("pay") || lower.includes("cash") || lower.includes("zelle")) {
+    } else if (
+      lower.includes("pay") ||
+      lower.includes("cash") ||
+      lower.includes("zelle")
+    ) {
       processOption("How do I pay?");
-    } else if (lower.includes("fee") || lower.includes("charge") || lower.includes("cost") || lower.includes("tax") || lower.includes("tip")) {
+    } else if (
+      lower.includes("fee") ||
+      lower.includes("charge") ||
+      lower.includes("cost") ||
+      lower.includes("tax") ||
+      lower.includes("tip")
+    ) {
       processOption("What are the fees?");
-    } else if (lower.includes("cater") || lower.includes("event") || lower.includes("party")) {
+    } else if (
+      lower.includes("cater") ||
+      lower.includes("event") ||
+      lower.includes("party")
+    ) {
       processOption("Do you cater events?");
-    } else if (lower.includes("contact") || lower.includes("phone") || lower.includes("human") || lower.includes("talk")) {
+    } else if (
+      lower.includes("contact") ||
+      lower.includes("phone") ||
+      lower.includes("human") ||
+      lower.includes("talk")
+    ) {
       processOption("Contact Us");
     } else if (lower.includes("size")) {
       processOption("What sizes are available?");
+    } else if (/^[1-9]\d*$/.test(text) && orderState.step === "quantity") {
+      processOption(text);
     } else {
       const waUrl = buildWhatsAppUrl(`Hi Xulanin! ${text}`);
       addBotMessage(
@@ -243,32 +438,32 @@ export function XulaninChatbot() {
       {/* Chat bubble */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] shadow-2xl flex items-center justify-center hover:scale-110 transition-transform animate-pulse-glow"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] shadow-2xl flex items-center justify-center hover:scale-110 transition-transform animate-pulse-glow"
         aria-label="Chat with Xulanin"
       >
-        {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
+        {isOpen ? <X size={22} /> : <MessageCircle size={22} />}
       </button>
 
       {/* Chat panel */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] h-[560px] max-h-[calc(100vh-8rem)] bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-bounce-in">
+        <div className="fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] max-w-[380px] h-[min(560px,calc(100vh-6rem))] sm:h-[560px] bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-bounce-in">
           {/* Header */}
-          <div className="bg-[var(--primary)] text-[var(--primary-foreground)] px-5 py-4 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-              <ShoppingBag size={20} />
+          <div className="bg-[var(--primary)] text-[var(--primary-foreground)] px-4 sm:px-5 py-3 sm:py-4 flex items-center gap-3 shrink-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+              <ShoppingBag size={18} />
             </div>
-            <div>
-              <h3 className="font-serif text-lg leading-tight">Xulanin</h3>
-              <p className="text-xs opacity-80">Your Snack Concierge</p>
+            <div className="min-w-0">
+              <h3 className="font-serif text-base sm:text-lg leading-tight">Xulanin</h3>
+              <p className="text-[10px] sm:text-xs opacity-80">Your Snack Concierge</p>
             </div>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
             {messages.map((msg, i) => (
               <div key={i}>
                 <div
-                  className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+                  className={`max-w-[90%] sm:max-w-[85%] px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-2xl text-[13px] sm:text-sm leading-relaxed ${
                     msg.role === "bot"
                       ? "bg-[var(--secondary)] text-[var(--foreground)] rounded-bl-md"
                       : "bg-[var(--primary)] text-[var(--primary-foreground)] rounded-br-md ml-auto"
@@ -277,12 +472,12 @@ export function XulaninChatbot() {
                   {renderText(msg.text)}
                 </div>
                 {msg.options && (
-                  <div className="flex flex-wrap gap-2 mt-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2">
                     {msg.options.map((opt) => (
                       <button
                         key={opt}
                         onClick={() => handleOptionClick(opt)}
-                        className="px-3 py-1.5 text-xs border border-[var(--primary)]/30 text-[var(--primary)] rounded-full hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)] transition-colors"
+                        className="px-3 py-1.5 text-[11px] sm:text-xs border border-[var(--primary)]/30 text-[var(--primary)] rounded-full hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)] active:bg-[var(--primary)] active:text-[var(--primary-foreground)] transition-colors"
                       >
                         {opt}
                       </button>
@@ -295,18 +490,22 @@ export function XulaninChatbot() {
           </div>
 
           {/* Input */}
-          <div className="border-t border-[var(--border)] p-3 flex gap-2">
+          <div className="border-t border-[var(--border)] p-2.5 sm:p-3 flex gap-2 shrink-0">
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              placeholder="Type a message..."
-              className="flex-1 px-4 py-2.5 bg-[var(--background)] border border-[var(--border)] rounded-full text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
+              placeholder={
+                orderState.step === "address"
+                  ? "Type your delivery address..."
+                  : "Type a message..."
+              }
+              className="flex-1 px-3.5 sm:px-4 py-2.5 bg-[var(--background)] border border-[var(--border)] rounded-full text-sm text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
             />
             <button
               onClick={handleSend}
-              className="w-10 h-10 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center hover:opacity-90 transition-opacity shrink-0"
+              className="w-10 h-10 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center hover:opacity-90 active:scale-95 transition-all shrink-0"
             >
               <Send size={16} />
             </button>

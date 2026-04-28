@@ -144,60 +144,60 @@ export default function MenuPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-28 pb-24">
-        <div className="container mx-auto px-6">
+      <main className="pt-20 sm:pt-28 pb-24">
+        <div className="container mx-auto px-4 sm:px-6">
           {/* Hero */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-10 sm:mb-16">
             <span className="text-xs tracking-widest text-[var(--primary)] uppercase">
               Our Menu
             </span>
-            <h1 className="font-serif text-4xl lg:text-6xl mt-4 text-[var(--foreground)]">
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-6xl mt-3 sm:mt-4 text-[var(--foreground)]">
               Snacks That{" "}
               <span className="text-[var(--primary)]">Smack</span>
             </h1>
-            <p className="text-[var(--muted-foreground)] mt-4 max-w-lg mx-auto">
+            <p className="text-[var(--muted-foreground)] mt-3 sm:mt-4 max-w-lg mx-auto text-sm sm:text-base">
               Three signature treats, handcrafted in small batches.
               Pick your size and order fresh.
             </p>
           </div>
 
           {/* Order type toggle */}
-          <div className="max-w-5xl mx-auto mb-10">
-            <div className="flex items-center justify-center gap-2 p-1.5 bg-[var(--secondary)] rounded-2xl max-w-sm mx-auto">
+          <div className="max-w-5xl mx-auto mb-8 sm:mb-10">
+            <div className="flex items-center justify-center gap-2 p-1.5 bg-[var(--secondary)] rounded-2xl max-w-xs sm:max-w-sm mx-auto">
               <button
                 onClick={() => {
                   setOrderType("pickup");
                   setSelectedZoneId("pickup");
                 }}
-                className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-medium transition-all ${
+                className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl text-xs sm:text-sm font-medium transition-all ${
                   orderType === "pickup"
                     ? "bg-[var(--background)] text-[var(--foreground)] shadow-lg"
                     : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
                 }`}
               >
-                <Store size={16} />
+                <Store size={15} />
                 Pickup
-                <span className="text-xs text-green-600 font-semibold">FREE</span>
+                <span className="text-[10px] sm:text-xs text-green-600 font-semibold">FREE</span>
               </button>
               <button
                 onClick={() => {
                   setOrderType("delivery");
                   if (selectedZoneId === "pickup") setSelectedZoneId("south-bay");
                 }}
-                className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-medium transition-all ${
+                className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl text-xs sm:text-sm font-medium transition-all ${
                   orderType === "delivery"
                     ? "bg-[var(--background)] text-[var(--foreground)] shadow-lg"
                     : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
                 }`}
               >
-                <Truck size={16} />
+                <Truck size={15} />
                 Delivery
               </button>
             </div>
 
             {/* Delivery zone info bar */}
             {selectedZone && (
-              <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
+              <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm">
                 {orderType === "pickup" ? (
                   <>
                     <span className="flex items-center gap-1.5 text-[var(--muted-foreground)]">
@@ -242,7 +242,7 @@ export default function MenuPage() {
                       setSelectedZoneId(zone.id);
                       setShowZoneSelector(false);
                     }}
-                    className={`w-full flex items-center justify-between p-4 text-left hover:bg-[var(--secondary)] transition-colors border-b border-[var(--border)] last:border-b-0 ${
+                    className={`w-full flex items-center justify-between p-3.5 sm:p-4 text-left hover:bg-[var(--secondary)] active:bg-[var(--secondary)] transition-colors border-b border-[var(--border)] last:border-b-0 ${
                       selectedZoneId === zone.id ? "bg-[var(--primary)]/5" : ""
                     }`}
                   >
@@ -274,7 +274,7 @@ export default function MenuPage() {
           </div>
 
           {/* Product cards */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-8 max-w-5xl mx-auto">
             {XUBIE_DATA.products.map((product) => {
               const size = selectedSizes[product.id];
               const price = size === "lrg" ? product.priceLrg : product.priceReg;
@@ -285,7 +285,7 @@ export default function MenuPage() {
               return (
                 <div
                   key={product.id}
-                  className="group bg-[var(--card)] border border-[var(--border)] rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className="group bg-[var(--card)] border border-[var(--border)] rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2"
                 >
                   <div className="aspect-square relative overflow-hidden bg-[var(--muted)]">
                     <Image
@@ -293,13 +293,13 @@ export default function MenuPage() {
                       alt={product.name}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                     />
-                    <div className="absolute top-4 left-4 flex gap-2">
+                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex gap-2">
                       {product.tags.map((tag) => (
                         <span
                           key={tag}
-                          className={`px-3 py-1.5 rounded-full text-[11px] uppercase tracking-wider font-medium backdrop-blur-sm ${
+                          className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] uppercase tracking-wider font-medium backdrop-blur-sm ${
                             tag === "bestseller"
                               ? "bg-[var(--primary)]/90 text-[var(--primary-foreground)]"
                               : tag === "new"
@@ -313,15 +313,15 @@ export default function MenuPage() {
                     </div>
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="font-serif text-2xl text-[var(--foreground)] mb-2">
+                  <div className="p-4 sm:p-6">
+                    <h3 className="font-serif text-xl sm:text-2xl text-[var(--foreground)] mb-2">
                       {product.name}
                     </h3>
-                    <p className="text-sm text-[var(--muted-foreground)] leading-relaxed mb-5">
+                    <p className="text-xs sm:text-sm text-[var(--muted-foreground)] leading-relaxed mb-4 sm:mb-5">
                       {product.description}
                     </p>
 
-                    <div className="flex gap-0.5 mb-4">
+                    <div className="flex gap-0.5 mb-3 sm:mb-4">
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
@@ -331,7 +331,7 @@ export default function MenuPage() {
                       ))}
                     </div>
 
-                    <div className="flex gap-2 mb-5">
+                    <div className="flex gap-2 mb-4 sm:mb-5">
                       <button
                         onClick={() =>
                           setSelectedSizes((prev) => ({
@@ -339,7 +339,7 @@ export default function MenuPage() {
                             [product.id]: "reg",
                           }))
                         }
-                        className={`flex-1 py-3 rounded-xl text-sm font-medium transition-all ${
+                        className={`flex-1 py-2.5 sm:py-3 rounded-xl text-sm font-medium transition-all ${
                           size === "reg"
                             ? "bg-[var(--primary)] text-[var(--primary-foreground)] shadow-lg"
                             : "bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--primary)]/10"
@@ -354,7 +354,7 @@ export default function MenuPage() {
                             [product.id]: "lrg",
                           }))
                         }
-                        className={`flex-1 py-3 rounded-xl text-sm font-medium transition-all ${
+                        className={`flex-1 py-2.5 sm:py-3 rounded-xl text-sm font-medium transition-all ${
                           size === "lrg"
                             ? "bg-[var(--primary)] text-[var(--primary-foreground)] shadow-lg"
                             : "bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--primary)]/10"
@@ -370,7 +370,7 @@ export default function MenuPage() {
                           onClick={() =>
                             updateQuantity(product.id, size, cartItem.quantity - 1)
                           }
-                          className="w-10 h-10 rounded-lg bg-[var(--background)] flex items-center justify-center hover:bg-[var(--primary)]/10 transition-colors"
+                          className="w-10 h-10 rounded-lg bg-[var(--background)] flex items-center justify-center hover:bg-[var(--primary)]/10 active:bg-[var(--primary)]/20 transition-colors"
                         >
                           <Minus size={16} />
                         </button>
@@ -381,7 +381,7 @@ export default function MenuPage() {
                           onClick={() =>
                             updateQuantity(product.id, size, cartItem.quantity + 1)
                           }
-                          className="w-10 h-10 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center hover:opacity-90 transition-opacity"
+                          className="w-10 h-10 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center hover:opacity-90 active:scale-95 transition-all"
                         >
                           <Plus size={16} />
                         </button>
@@ -391,7 +391,7 @@ export default function MenuPage() {
                         onClick={() =>
                           addItem({ id: product.id, name: product.name, price, size })
                         }
-                        className="w-full flex items-center justify-center gap-2 py-3 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-xl font-medium hover:opacity-90 transition-opacity"
+                        className="w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-xl font-medium hover:opacity-90 active:scale-[0.98] transition-all"
                       >
                         <Plus size={18} />
                         Add to Order — ${price}
@@ -404,59 +404,59 @@ export default function MenuPage() {
           </div>
 
           {/* Delivery zones info card */}
-          <div className="max-w-5xl mx-auto mt-16">
-            <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-8">
-              <h3 className="font-serif text-2xl text-[var(--foreground)] mb-2">
+          <div className="max-w-5xl mx-auto mt-12 sm:mt-16">
+            <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-8">
+              <h3 className="font-serif text-xl sm:text-2xl text-[var(--foreground)] mb-2">
                 Delivery Zones & Fees
               </h3>
-              <p className="text-sm text-[var(--muted-foreground)] mb-6">
+              <p className="text-xs sm:text-sm text-[var(--muted-foreground)] mb-5 sm:mb-6">
                 We deliver across the Bay Area! Fee is based on distance from San Jose.
               </p>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
                 {DELIVERY_ZONES.map((zone) => (
                   <div
                     key={zone.id}
-                    className={`p-4 rounded-xl border transition-all ${
+                    className={`p-3 sm:p-4 rounded-xl border transition-all ${
                       zone.id === "pickup"
                         ? "border-green-300 bg-green-50"
                         : "border-[var(--border)] bg-[var(--background)] hover:border-[var(--primary)]/30"
                     }`}
                   >
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
                       {zone.id === "pickup" ? (
-                        <Store size={16} className="text-green-600" />
+                        <Store size={14} className="text-green-600 shrink-0" />
                       ) : (
-                        <Truck size={16} className="text-[var(--primary)]" />
+                        <Truck size={14} className="text-[var(--primary)] shrink-0" />
                       )}
-                      <span className="text-sm font-semibold text-[var(--foreground)]">
+                      <span className="text-xs sm:text-sm font-semibold text-[var(--foreground)] truncate">
                         {zone.name}
                       </span>
                     </div>
-                    <p className="text-xl font-bold text-[var(--primary)]">
+                    <p className="text-lg sm:text-xl font-bold text-[var(--primary)]">
                       {zone.fee === 0 ? "FREE" : `$${zone.fee.toFixed(2)}`}
                     </p>
-                    <p className="text-xs text-[var(--muted-foreground)] mt-1">
+                    <p className="text-[10px] sm:text-xs text-[var(--muted-foreground)] mt-1">
                       {formatEstimate(zone)}
                     </p>
                     {zone.minimumOrder > 0 && (
-                      <p className="text-xs text-[var(--muted-foreground)] mt-0.5">
+                      <p className="text-[10px] sm:text-xs text-[var(--muted-foreground)] mt-0.5">
                         Min order ${zone.minimumOrder}
                       </p>
                     )}
-                    <p className="text-[10px] text-[var(--muted-foreground)] mt-1 leading-tight">
+                    <p className="text-[9px] sm:text-[10px] text-[var(--muted-foreground)] mt-1 leading-tight hidden sm:block">
                       {zone.description}
                     </p>
                   </div>
                 ))}
               </div>
-              <div className="mt-6 flex flex-wrap gap-6 text-xs text-[var(--muted-foreground)]">
+              <div className="mt-4 sm:mt-6 flex flex-wrap gap-3 sm:gap-6 text-[10px] sm:text-xs text-[var(--muted-foreground)]">
                 <span className="flex items-center gap-1.5">
                   <DollarSign size={12} className="text-[var(--primary)]" />
                   5% service fee (max $5)
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Info size={12} className="text-[var(--primary)]" />
-                  $2 small order fee on orders under ${SMALL_ORDER_THRESHOLD}
+                  $2 small order fee under ${SMALL_ORDER_THRESHOLD}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <DollarSign size={12} className="text-[var(--primary)]" />
@@ -467,15 +467,15 @@ export default function MenuPage() {
           </div>
 
           {/* WhatsApp CTA */}
-          <div className="text-center mt-16">
-            <p className="text-[var(--muted-foreground)] mb-4">
+          <div className="text-center mt-12 sm:mt-16">
+            <p className="text-[var(--muted-foreground)] mb-4 text-sm sm:text-base">
               Prefer to order directly? Message us on WhatsApp!
             </p>
             <a
               href={`https://wa.me/${XUBIE_DATA.company.whatsapp}?text=${encodeURIComponent("Hi Xulanin! I'd like to place an order.")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-colors shadow-lg"
+              className="inline-flex items-center gap-2.5 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 active:scale-[0.98] transition-all shadow-lg text-sm sm:text-base"
             >
               <MessageCircle size={20} />
               Order via WhatsApp
@@ -486,14 +486,14 @@ export default function MenuPage() {
           {itemCount > 0 && (
             <button
               onClick={() => setShowCart(true)}
-              className="fixed bottom-6 left-6 z-40 flex items-center gap-3 px-6 py-4 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-full shadow-2xl hover:opacity-90 transition-opacity animate-pulse-glow"
+              className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-full shadow-2xl hover:opacity-90 active:scale-[0.97] transition-all animate-pulse-glow text-sm sm:text-base"
             >
-              <ShoppingBag size={20} />
+              <ShoppingBag size={18} />
               <span className="font-medium">
                 {itemCount} item{itemCount !== 1 ? "s" : ""} &middot; $
                 {fees.total.toFixed(2)}
               </span>
-              <ArrowRight size={16} />
+              <ArrowRight size={14} />
             </button>
           )}
 
@@ -504,9 +504,9 @@ export default function MenuPage() {
                 className="absolute inset-0 bg-black/50 backdrop-blur-sm"
                 onClick={() => setShowCart(false)}
               />
-              <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-[var(--background)] shadow-2xl flex flex-col">
-                <div className="flex items-center justify-between p-6 border-b border-[var(--border)]">
-                  <h2 className="font-serif text-2xl">Your Cart</h2>
+              <div className="absolute right-0 top-0 bottom-0 w-full sm:max-w-md bg-[var(--background)] shadow-2xl flex flex-col">
+                <div className="flex items-center justify-between p-4 sm:p-6 border-b border-[var(--border)]">
+                  <h2 className="font-serif text-xl sm:text-2xl">Your Cart</h2>
                   <button
                     onClick={() => setShowCart(false)}
                     className="p-2 hover:bg-[var(--secondary)] rounded-lg transition-colors"
@@ -516,7 +516,7 @@ export default function MenuPage() {
                 </div>
 
                 {/* Order type in cart */}
-                <div className="px-6 pt-4">
+                <div className="px-4 sm:px-6 pt-4">
                   <div className="flex gap-2 p-1 bg-[var(--secondary)] rounded-xl">
                     <button
                       onClick={() => {
@@ -580,17 +580,17 @@ export default function MenuPage() {
                   )}
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-6">
+                <div className="flex-1 overflow-y-auto p-4 sm:p-6">
                   {items.length === 0 ? (
                     <p className="text-center text-[var(--muted-foreground)] mt-8">
                       Your cart is empty
                     </p>
                   ) : (
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-4">
                       {items.map((item) => (
                         <div
                           key={`${item.id}-${item.size}`}
-                          className="flex items-center gap-4 p-4 bg-[var(--card)] rounded-xl border border-[var(--border)]"
+                          className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-[var(--card)] rounded-xl border border-[var(--border)]"
                         >
                           <div className="flex-1 min-w-0">
                             <h4 className="font-medium text-sm truncate">
@@ -600,7 +600,7 @@ export default function MenuPage() {
                               {item.size === "lrg" ? "Large" : "Regular"} — ${item.price.toFixed(2)} each
                             </p>
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1.5 sm:gap-2">
                             <button
                               onClick={() =>
                                 updateQuantity(item.id, item.size, item.quantity - 1)
@@ -621,7 +621,7 @@ export default function MenuPage() {
                               <Plus size={12} />
                             </button>
                           </div>
-                          <p className="text-sm font-semibold text-[var(--primary)] w-16 text-right">
+                          <p className="text-sm font-semibold text-[var(--primary)] w-14 sm:w-16 text-right">
                             ${(item.price * item.quantity).toFixed(2)}
                           </p>
                           <button
@@ -636,9 +636,9 @@ export default function MenuPage() {
                   )}
                 </div>
 
-                {/* Uber Eats-style fee breakdown in cart */}
+                {/* Fee breakdown in cart */}
                 {items.length > 0 && (
-                  <div className="p-6 border-t border-[var(--border)]">
+                  <div className="p-4 sm:p-6 border-t border-[var(--border)]">
                     <div className="space-y-2 mb-4">
                       <div className="flex justify-between text-sm">
                         <span className="text-[var(--muted-foreground)]">Subtotal</span>
@@ -712,7 +712,7 @@ export default function MenuPage() {
                           setShowCheckout(true);
                         }}
                         disabled={!meetsMinimum}
-                        className="w-full py-4 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-40"
+                        className="w-full py-3.5 sm:py-4 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-xl font-medium hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-40"
                       >
                         Proceed to Checkout — ${fees.total.toFixed(2)}
                       </button>
@@ -721,7 +721,7 @@ export default function MenuPage() {
                           setShowCart(false);
                           handleWhatsAppOrder();
                         }}
-                        className="w-full py-4 bg-green-500 text-white rounded-xl font-medium hover:bg-green-600 transition-colors flex items-center justify-center gap-2"
+                        className="w-full py-3.5 sm:py-4 bg-green-500 text-white rounded-xl font-medium hover:bg-green-600 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
                       >
                         <MessageCircle size={18} />
                         Order via WhatsApp
@@ -735,7 +735,7 @@ export default function MenuPage() {
 
           {/* Checkout modal */}
           {showCheckout && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4">
               <div
                 className="absolute inset-0 bg-black/50 backdrop-blur-sm"
                 onClick={() => {
@@ -743,10 +743,10 @@ export default function MenuPage() {
                   setOrderStatus("idle");
                 }}
               />
-              <div className="relative bg-[var(--background)] rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className="font-serif text-2xl">Checkout</h2>
+              <div className="relative bg-[var(--background)] rounded-t-2xl sm:rounded-2xl shadow-2xl w-full sm:max-w-lg max-h-[90vh] overflow-y-auto">
+                <div className="p-4 sm:p-6">
+                  <div className="flex items-center justify-between mb-4 sm:mb-6">
+                    <h2 className="font-serif text-xl sm:text-2xl">Checkout</h2>
                     <button
                       onClick={() => {
                         setShowCheckout(false);
@@ -759,14 +759,14 @@ export default function MenuPage() {
                   </div>
 
                   {orderStatus === "success" ? (
-                    <div className="text-center py-12">
-                      <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-                        <Check size={32} className="text-green-600" />
+                    <div className="text-center py-8 sm:py-12">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                        <Check size={28} className="text-green-600" />
                       </div>
-                      <h3 className="font-serif text-2xl mb-2">
+                      <h3 className="font-serif text-xl sm:text-2xl mb-2">
                         Order Confirmed!
                       </h3>
-                      <p className="text-[var(--muted-foreground)] mb-2">
+                      <p className="text-[var(--muted-foreground)] mb-2 text-sm">
                         Your order ID: <strong>{orderId}</strong>
                       </p>
                       <p className="text-sm text-[var(--muted-foreground)] mb-1">
@@ -795,7 +795,7 @@ export default function MenuPage() {
                   ) : (
                     <form onSubmit={handleCheckout}>
                       {/* Order summary header */}
-                      <div className="bg-[var(--secondary)] rounded-xl p-4 mb-6">
+                      <div className="bg-[var(--secondary)] rounded-xl p-3.5 sm:p-4 mb-5 sm:mb-6">
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center gap-2">
                             {orderType === "pickup" ? (
@@ -827,10 +827,10 @@ export default function MenuPage() {
                       </div>
 
                       {/* Customer fields */}
-                      <div className="space-y-4 mb-6">
-                        <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-3 sm:space-y-4 mb-5 sm:mb-6">
+                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
                           <div>
-                            <label className="text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-2">
+                            <label className="text-[10px] sm:text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-1.5 sm:mb-2">
                               Full Name *
                             </label>
                             <input
@@ -840,12 +840,12 @@ export default function MenuPage() {
                               onChange={(e) =>
                                 setCustomer((prev) => ({ ...prev, name: e.target.value }))
                               }
-                              className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
+                              className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
                               placeholder="Your name"
                             />
                           </div>
                           <div>
-                            <label className="text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-2">
+                            <label className="text-[10px] sm:text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-1.5 sm:mb-2">
                               Phone *
                             </label>
                             <input
@@ -855,13 +855,13 @@ export default function MenuPage() {
                               onChange={(e) =>
                                 setCustomer((prev) => ({ ...prev, phone: e.target.value }))
                               }
-                              className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
+                              className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
                               placeholder="(555) 123-4567"
                             />
                           </div>
                         </div>
                         <div>
-                          <label className="text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-2">
+                          <label className="text-[10px] sm:text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-1.5 sm:mb-2">
                             Email *
                           </label>
                           <input
@@ -871,13 +871,13 @@ export default function MenuPage() {
                             onChange={(e) =>
                               setCustomer((prev) => ({ ...prev, email: e.target.value }))
                             }
-                            className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
+                            className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
                             placeholder="you@email.com"
                           />
                         </div>
                         {orderType === "delivery" && (
                           <div>
-                            <label className="text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-2">
+                            <label className="text-[10px] sm:text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-1.5 sm:mb-2">
                               Delivery Address *
                             </label>
                             <input
@@ -887,13 +887,13 @@ export default function MenuPage() {
                               onChange={(e) =>
                                 setCustomer((prev) => ({ ...prev, address: e.target.value }))
                               }
-                              className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
+                              className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30"
                               placeholder="123 Main St, City, CA 95000"
                             />
                           </div>
                         )}
                         <div>
-                          <label className="text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-2">
+                          <label className="text-[10px] sm:text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-1.5 sm:mb-2">
                             Special Instructions
                           </label>
                           <textarea
@@ -902,18 +902,18 @@ export default function MenuPage() {
                               setCustomer((prev) => ({ ...prev, notes: e.target.value }))
                             }
                             rows={2}
-                            className="w-full px-4 py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30 resize-none"
+                            className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-[var(--card)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30 resize-none"
                             placeholder="Any special requests?"
                           />
                         </div>
                       </div>
 
                       {/* Tip selector */}
-                      <div className="mb-6">
-                        <label className="text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-3">
+                      <div className="mb-5 sm:mb-6">
+                        <label className="text-[10px] sm:text-xs text-[var(--muted-foreground)] uppercase tracking-wider block mb-2 sm:mb-3">
                           Add a Tip
                         </label>
-                        <div className="flex gap-2 mb-2">
+                        <div className="flex gap-1.5 sm:gap-2 mb-2">
                           {TIP_PRESETS.map((pct) => (
                             <button
                               key={pct}
@@ -922,7 +922,7 @@ export default function MenuPage() {
                                 setTipPercent(pct);
                                 setCustomTip("");
                               }}
-                              className={`flex-1 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                              className={`flex-1 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
                                 tipPercent === pct && !customTip
                                   ? "bg-[var(--primary)] text-[var(--primary-foreground)] shadow"
                                   : "bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[var(--primary)]/10"
@@ -932,7 +932,7 @@ export default function MenuPage() {
                             </button>
                           ))}
                           <div className="flex-1 relative">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--muted-foreground)]">$</span>
+                            <span className="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 text-xs sm:text-sm text-[var(--muted-foreground)]">$</span>
                             <input
                               type="number"
                               min="0"
@@ -943,7 +943,7 @@ export default function MenuPage() {
                                 setTipPercent(null);
                               }}
                               placeholder="Other"
-                              className={`w-full pl-7 pr-3 py-2.5 rounded-xl text-sm font-medium border focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30 ${
+                              className={`w-full pl-6 sm:pl-7 pr-2 sm:pr-3 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium border focus:outline-none focus:ring-2 focus:ring-[var(--ring)]/30 ${
                                 customTip
                                   ? "bg-[var(--primary)] text-[var(--primary-foreground)] border-[var(--primary)]"
                                   : "bg-[var(--secondary)] text-[var(--secondary-foreground)] border-transparent"
@@ -959,7 +959,7 @@ export default function MenuPage() {
                       </div>
 
                       {/* Fee breakdown */}
-                      <div className="bg-[var(--secondary)] rounded-xl p-4 mb-6">
+                      <div className="bg-[var(--secondary)] rounded-xl p-3.5 sm:p-4 mb-5 sm:mb-6">
                         <div className="space-y-2">
                           <div className="flex justify-between text-sm">
                             <span className="text-[var(--muted-foreground)]">Subtotal</span>
@@ -993,7 +993,7 @@ export default function MenuPage() {
                               <span>${fees.tip.toFixed(2)}</span>
                             </div>
                           )}
-                          <div className="border-t border-[var(--border)] pt-2 flex justify-between font-semibold text-lg">
+                          <div className="border-t border-[var(--border)] pt-2 flex justify-between font-semibold text-base sm:text-lg">
                             <span>Total</span>
                             <span className="text-[var(--primary)]">${fees.total.toFixed(2)}</span>
                           </div>
@@ -1012,7 +1012,7 @@ export default function MenuPage() {
                         <button
                           type="submit"
                           disabled={orderStatus === "submitting" || !meetsMinimum}
-                          className="w-full py-4 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-xl font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+                          className="w-full py-3.5 sm:py-4 bg-[var(--primary)] text-[var(--primary-foreground)] rounded-xl font-medium hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50"
                         >
                           {orderStatus === "submitting"
                             ? "Placing Order..."
@@ -1021,7 +1021,7 @@ export default function MenuPage() {
                         <button
                           type="button"
                           onClick={handleWhatsAppOrder}
-                          className="w-full py-4 bg-green-500 text-white rounded-xl font-medium hover:bg-green-600 transition-colors flex items-center justify-center gap-2"
+                          className="w-full py-3.5 sm:py-4 bg-green-500 text-white rounded-xl font-medium hover:bg-green-600 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
                         >
                           <MessageCircle size={18} />
                           Or Order via WhatsApp
