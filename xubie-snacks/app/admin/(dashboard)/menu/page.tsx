@@ -82,7 +82,7 @@ export default async function MenuPage() {
                   </span>
                 )}
                 <p className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-1">
-                  {product.category}
+                  {product.tags?.[0] ?? "Signature"}
                 </p>
                 <h3 className="text-white font-black text-xl leading-tight">
                   {product.name}
@@ -141,7 +141,7 @@ export default async function MenuPage() {
                       </span>
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-gray-400">
-                          {size.servings} serving{parseInt(size.servings) !== 1 ? "s" : ""}
+                          {size.serving}
                         </span>
                         <span className="font-bold text-gray-900 text-sm">
                           {formatCurrency(size.price)}
