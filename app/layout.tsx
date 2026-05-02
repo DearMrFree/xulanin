@@ -17,17 +17,24 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://xulanin.com"),
   title: "Xubie Snacks | Snacks That Smack",
   description:
     "Handcrafted Banana Pudding, Biscoff Banana Pudding, and Xubie Cake from San Jose, CA. Order via WhatsApp, DM, or our site. Bay Area pickup and delivery.",
   keywords:
-    "xubie snacks, banana pudding, biscoff pudding, xubie cake, san jose snacks, bay area desserts, handcrafted treats, pop-up snacks",
+    "xubie snacks, banana pudding, biscoff pudding, xubie cake, san jose snacks, bay area desserts, handcrafted treats, pop-up snacks, nina lux",
   openGraph: {
     title: "Xubie Snacks | Snacks That Smack",
     description:
       "Handcrafted desserts by Nina Lux. Banana Pudding, Biscoff Banana Pudding, and Xubie Cake. Order now for Bay Area pickup and delivery.",
     type: "website",
     url: "https://xulanin.com",
+    images: [{ url: "/branding/community-hero.jpeg" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Xubie Snacks | Snacks That Smack",
+    description: "Handcrafted desserts by Nina Lux. Bay Area pickup and delivery.",
   },
 };
 
