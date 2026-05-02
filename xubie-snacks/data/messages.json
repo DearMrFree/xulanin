@@ -1,0 +1,62 @@
+[
+  {
+    "id": "MSG-001",
+    "name": "Carlos Mendoza",
+    "email": "carlos.m@gmail.com",
+    "phone": "(408) 555-0215",
+    "inquiryType": "Corporate / Event Catering",
+    "message": "Hi Nina! We are hosting a company event for 40 people on May 15th and would love to have Xubie Snacks cater desserts. Can you put together a quote for assorted banana pudding and Xubie Cake for the group? Budget is flexible if the quality is there.",
+    "status": "new",
+    "createdAt": "2026-05-02T16:30:00Z"
+  },
+  {
+    "id": "MSG-002",
+    "name": "Brianna Scott",
+    "email": "bscott@icloud.com",
+    "phone": "(510) 555-0387",
+    "inquiryType": "Place a Custom Order",
+    "message": "Hello! I want to order 10 cups of Biscoff Banana Pudding for a bridal shower this Saturday. Can I do a bulk pickup? Also do you do custom labels/stickers for special events?",
+    "status": "new",
+    "createdAt": "2026-05-02T12:15:00Z"
+  },
+  {
+    "id": "MSG-003",
+    "name": "Malik Green",
+    "email": "malik.green@outlook.com",
+    "phone": "",
+    "inquiryType": "Wholesale Partnership",
+    "message": "Hey, I run a small grocery and specialty foods store in East San Jose. I would love to carry Xubie Snacks products on a consignment or wholesale basis. Who should I talk to about getting product on my shelves?",
+    "status": "read",
+    "createdAt": "2026-05-01T10:00:00Z"
+  },
+  {
+    "id": "MSG-004",
+    "name": "Rachel Kim",
+    "email": "rachel.kim@gmail.com",
+    "phone": "(650) 555-0541",
+    "inquiryType": "Feedback / Suggestion",
+    "message": "Just wanted to say the Banana Pudding I ordered last week was absolutely incredible. My whole family loved it. Please never stop making it. Also — any chance you will ever do a chocolate version? Would be a bestseller for sure.",
+    "status": "replied",
+    "createdAt": "2026-04-30T18:45:00Z"
+  },
+  {
+    "id": "MSG-005",
+    "name": "James Okafor",
+    "email": "james.o@yahoo.com",
+    "phone": "(408) 555-0698",
+    "inquiryType": "Press / Media",
+    "message": "Hi! I write for a Bay Area food blog called The Bite Report. We cover emerging food brands in the South Bay and I would love to feature Xubie Snacks in our next issue. Would Nina be open to a short interview and some photos at your next pop-up?",
+    "status": "replied",
+    "createdAt": "2026-04-29T09:30:00Z"
+  },
+  {
+    "id": "MSG-006",
+    "name": "Destiny Williams",
+    "email": "destiny.w@gmail.com",
+    "phone": "(669) 555-0782",
+    "inquiryType": "General Inquiry",
+    "message": "What are your hours for pickup? And do you do same-day orders if I contact you in the morning? Also where exactly is the pickup location? The address on the site is a bit unclear.",
+    "status": "read",
+    "createdAt": "2026-04-28T14:00:00Z"
+  }
+]
